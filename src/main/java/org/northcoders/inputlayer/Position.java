@@ -1,8 +1,6 @@
 package org.northcoders.inputlayer;
 
-import org.northcoders.inputlayer.inputparsers.Coordindates;
-
-public class Position implements Coordindates {
+public class Position  {
     private int x;
     private int y;
     private CompassDirection facing;
