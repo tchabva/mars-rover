@@ -2,19 +2,18 @@ package org.northcoders.inputlayer.inputparsers;
 
 import org.northcoders.inputlayer.Instruction;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class InstructionParser {
-    private String instructionString;
-    private String[] instructionStringArray;
-    private Queue<Instruction> instructions = new LinkedList<>();
+
+    private final Queue<Instruction> instructions = new LinkedList<>();
     private boolean isValidInstruction;
 
-    // TODO: create method to accept an input string, parses the input string to an ArrayList of instructions
-
+    // Takes an input and returns Queue of Instructions if the input is valid.
+    // Assigns isValidInstruction to true or false depending on the input.
     public Queue<Instruction> parseInstructions(String input) {
+
         if (input == null){
             System.out.println("Please enter a valid Instruction!");
             isValidInstruction = false;
@@ -24,7 +23,7 @@ public class InstructionParser {
             isValidInstruction = false;
             return null;
         } else {
-            instructionStringArray = input.split("");
+            String[] instructionStringArray = input.split("");
 
             for (String inst : instructionStringArray){
                 try{
@@ -36,6 +35,7 @@ public class InstructionParser {
                 }
             }
         }
+
         isValidInstruction = true;
         return instructions;
     }
