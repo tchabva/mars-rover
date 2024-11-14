@@ -1,6 +1,6 @@
 package org.northcoders.inputlayer;
 
-public enum CompassDirection {
+enum CompassDirection {
     N,
     W,
     S,
