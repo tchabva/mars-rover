@@ -7,6 +7,11 @@ public class Position implements Coordindates {
     private int y;
     private CompassDirection facing;
 
+    public Position(int x,  int y,CompassDirection facing) {
+        this.facing = facing;
+        this.y = y;
+        this.x = x;
+    }
 
     public int getX() {
         return x;
