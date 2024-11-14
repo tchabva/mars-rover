@@ -1,6 +1,6 @@
 package org.northcoders.inputlayer;
 
-class Position {
+public class Position {
     private int x;
     private int y;
     private CompassDirection facing;
