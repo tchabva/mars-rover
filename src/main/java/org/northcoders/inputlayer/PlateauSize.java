@@ -1,6 +1,6 @@
 package org.northcoders.inputlayer;
 
-class PlateauSize {
+public class PlateauSize {
     private int x;
     private int y;
 }
