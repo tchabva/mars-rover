@@ -5,7 +5,6 @@ import org.northcoders.inputlayer.Position;
 public class Rover {
     private Position position;
 
-
     public Rover(Position position) {
         this.position = position;
     }
