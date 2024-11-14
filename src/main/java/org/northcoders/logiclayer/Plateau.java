@@ -16,14 +16,13 @@ public class Plateau {
         this.y = plateauSize.getY()+1;
     }
 
-    public void addRover(Rover rover){
-        roverList.add(rover);
+    public List<Rover> getRoverList() {
+        return roverList;
     }
 
     public BiPredicate<Integer, Integer> isValidPosition = (posX, posY) ->{
         return posX <= x && posX >= 0 && posY <= y && posY >= 0;
     };
-
 
     public BiPredicate<Integer, Integer> isPositionFree = (posX, posY) ->{
         for (Rover rover : roverList){
