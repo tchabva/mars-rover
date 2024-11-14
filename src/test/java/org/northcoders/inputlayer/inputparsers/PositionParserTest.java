@@ -57,7 +57,7 @@ class PositionParserTest {
                 () -> assertFalse(positionParser.isValidPosition()),
                 () -> assertEquals(-1, positionTwo.getX()),
                 () -> assertEquals(-1, positionTwo.getY()),
-                () -> assertEquals(CompassDirection.W, positionTwo.getFacing()),
+                () -> assertEquals(CompassDirection.N, positionTwo.getFacing()),
                 () -> assertFalse(positionParser.isValidPosition()),
                 () -> assertEquals(-1, positionTwo.getX()),
                 () -> assertEquals(-1, positionTwo.getY()),
