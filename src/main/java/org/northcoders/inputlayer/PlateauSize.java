@@ -4,7 +4,7 @@ public class PlateauSize {
     private final int x;
     private final int y;
 
-    public PlateauSize(int y, int x) {
+    public PlateauSize(int x, int y) {
         this.y = y;
         this.x = x;
     }
