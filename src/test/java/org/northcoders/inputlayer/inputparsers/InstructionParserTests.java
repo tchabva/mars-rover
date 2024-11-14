@@ -28,12 +28,27 @@ class InstructionParserTests {
         assertAll("Confirms the Instruction parser returns a Queue with a single index for single strings",
                 () -> assertEquals(Instruction.L, resultL.remove()),
                 () -> assertEquals(Instruction.R, resultR.remove()),
-                () -> assertEquals(Instruction.M, resultM.remove())
+                () -> assertEquals(Instruction.M, resultM.remove()),
+                () -> assertTrue(instructionParser.isValidInstruction())
         );
     }
 
     @Test
-    @DisplayName("Returns valid instruction with a single any case character string input")
+    @DisplayName("Returns null instruction with console statement for a null input")
+    void testInstructionParserIsNullSafe(){
+        // Arrange
+        InstructionParser instructionParser = new InstructionParser();
+
+        // Act
+        Queue<Instruction> result = instructionParser.parseInstructions(null);
+
+        // Assert
+        assertNull(result);
+        assertFalse(instructionParser.isValidInstruction());
+    }
+
+    @Test
+    @DisplayName("Returns valid instruction with a valid lowercase string input")
     void testInstructionParserIsCaseSafe(){
         // Arrange
         InstructionParser instructionParser = new InstructionParser();
@@ -105,8 +120,9 @@ class InstructionParserTests {
         // Act
         Queue<Instruction> result = instructionParser.parseInstructions(input);
 
-
         // Assert
         assertNull(result);
     }
+
+
 }
