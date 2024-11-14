@@ -1,6 +1,8 @@
 package org.northcoders.inputlayer;
 
-public class PlateauSize {
+import org.northcoders.inputlayer.inputparsers.Coordindates;
+
+public class PlateauSize implements Coordindates {
     private final int x;
     private final int y;
 
