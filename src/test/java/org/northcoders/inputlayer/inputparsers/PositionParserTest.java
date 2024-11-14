@@ -28,11 +28,29 @@ class PositionParserTest {
                 () -> assertEquals(0, positionOne.getY()),
                 () -> assertEquals(CompassDirection.N, positionOne.getFacing()),
                 () -> assertTrue(positionParser.isValidPosition()),
-                () -> assertEquals(0, positionTwo.getX()),
-                () -> assertEquals(0, positionTwo.getY()),
+                () -> assertEquals(5, positionTwo.getX()),
+                () -> assertEquals(11, positionTwo.getY()),
                 () -> assertEquals(CompassDirection.W, positionTwo.getFacing()),
                 () -> assertTrue(positionParser.isValidPosition())
+        );
+    }
 
+    @Test
+    @DisplayName("Returns valid Position object with a valid lowercase string input")
+    void testPlateauSizeParserIsCaseSafe(){
+        // Arrange
+        PositionParser positionParser = new PositionParser();
+        String inputOne = "0 0 n";
+
+        // Act
+        Position positionOne = positionParser.positionParser(inputOne);
+
+        // Assert
+        assertAll("Confirms the PlateauSizeParser returns a returns PlateauSize object",
+                () -> assertEquals(0, positionOne.getX()),
+                () -> assertEquals(0, positionOne.getY()),
+                () -> assertEquals(CompassDirection.N, positionOne.getFacing()),
+                () -> assertTrue(positionParser.isValidPosition())
         );
     }
 
