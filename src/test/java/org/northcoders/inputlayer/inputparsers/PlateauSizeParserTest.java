@@ -7,13 +7,14 @@ import org.northcoders.inputlayer.PlateauSize;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlateauSizeParserTest {
+    // TODO look into beforeEach
 
     @Test
     @DisplayName("Returns valid PlateauSize object with a valid string input")
     void testPlateauSizeParser(){
         // Arrange
         PlateauSizeParser plateauSizeParser = new PlateauSizeParser();
-        String inputOne = "10 10";
+        String inputOne = "1000 10";
         String inputTwo = "5 11";
 
         // Act
@@ -22,7 +23,7 @@ class PlateauSizeParserTest {
 
         // Assert
         assertAll("Confirms the PlateauSizeParser returns a returns PlateauSize object",
-                () -> assertEquals(10, plateauSizeOne.getX()),
+                () -> assertEquals(1000, plateauSizeOne.getX()),
                 () -> assertEquals(10, plateauSizeOne.getY()),
                 () -> assertEquals(5, plateauSizeTwo.getX()),
                 () -> assertEquals(11, plateauSizeTwo.getY()),
@@ -38,7 +39,7 @@ class PlateauSizeParserTest {
         PlateauSizeParser plateauSizeParser = new PlateauSizeParser();
         String inputOne = "1010";
         String inputTwo = "5";
-        String inputThree = "";
+        String inputThree = "5gfhnghgfs";
 
         // Act
         PlateauSize plateauSizeOne = plateauSizeParser.parsePlateauSize(inputOne);
