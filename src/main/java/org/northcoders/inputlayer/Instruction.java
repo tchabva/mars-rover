@@ -1,6 +1,6 @@
 package org.northcoders.inputlayer;
 
-enum Instruction {
+public enum Instruction {
     L,
     R,
     M
