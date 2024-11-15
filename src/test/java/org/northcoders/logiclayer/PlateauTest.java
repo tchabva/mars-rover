@@ -12,7 +12,7 @@ class PlateauTest {
 
     @Test
     @DisplayName("Returns true if x and y are within the plateau boundary")
-    void testReturnsTrueIfXandYAreInPlateau(){
+    void testReturnsTrueIfXAndYAreInPlateau(){
         // Arrange
         Plateau plateau = new Plateau(new PlateauSize(10, 10));
 
@@ -54,7 +54,7 @@ class PlateauTest {
 
     @Test
     @DisplayName("Returns true if x and y are within the are not coordinates of a Rover")
-    void testReturnsTrueIfXandYAreNotCoordinatesOfARover(){
+    void testReturnsTrueIfXAndYAreNotCoordinatesOfARover(){
         // Arrange
         Plateau plateau = new Plateau(new PlateauSize(10, 10));
 
@@ -76,8 +76,8 @@ class PlateauTest {
     }
 
     @Test
-    @DisplayName("Returns true if x and y are within the are not coordinates of a Rover")
-    void testReturnsFalseIfXandYAreCoordinatesOfARover(){
+    @DisplayName("Returns false if x and y are coordinates of a Rover")
+    void testReturnsFalseIfXAndYAreCoordinatesOfARover(){
         // Arrange
         Plateau plateau = new Plateau(new PlateauSize(10, 10));
         plateau.getRoverList().add(new Rover(new Position(5,1, CompassDirection.W)));
@@ -92,14 +92,11 @@ class PlateauTest {
         boolean resultFour = plateau.isPositionFree.test(0,0);
 
         // Assert
-        assertAll("Return false as they are in all the Rover coordinates bounds",
+        assertAll("Return false as they are all the Rover coordinates",
                 () -> assertFalse(result),
                 () -> assertFalse(resultTwo),
                 () -> assertFalse(resultThree),
                 () -> assertFalse(resultFour)
         );
     }
-
-
-
 }
