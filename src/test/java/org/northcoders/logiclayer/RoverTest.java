@@ -21,7 +21,7 @@ class RoverTest {
         CompassDirection resultTwo = rover.getRotateCompassDirection().apply(rover.getPosition().getFacing(), Instruction.R);
 
         // Assert
-        assertAll("Returns the correct rotation for a compass direction input and instruction",
+        assertAll("Returns the correct rotation for a North compass direction input and instruction",
                 () -> assertEquals(CompassDirection.W, resultOne),
                 () -> assertEquals(CompassDirection.E, resultTwo)
         );
@@ -38,7 +38,7 @@ class RoverTest {
         CompassDirection resultTwo = rover.getRotateCompassDirection().apply(rover.getPosition().getFacing(), Instruction.R);
 
         // Assert
-        assertAll("Returns the correct rotation for a compass direction input and instruction",
+        assertAll("Returns the correct rotation for a South compass direction input and instruction",
                 () -> assertEquals(CompassDirection.E, resultOne),
                 () -> assertEquals(CompassDirection.W, resultTwo)
         );
@@ -55,14 +55,14 @@ class RoverTest {
         CompassDirection resultTwo = rover.getRotateCompassDirection().apply(rover.getPosition().getFacing(), Instruction.R);
 
         // Assert
-        assertAll("Returns the correct rotation for a compass direction input and instruction",
+        assertAll("Returns the correct rotation for an East compass direction input and instruction",
                 () -> assertEquals(CompassDirection.N, resultOne),
                 () -> assertEquals(CompassDirection.S, resultTwo)
         );
     }
 
     @Test
-    @DisplayName("Returns the correct CompassDirection when Rover is facing East and given an instruction")
+    @DisplayName("Returns the correct CompassDirection when Rover is facing West and given an instruction")
     void testRotateFromWest(){
         // Arrange
         Rover rover = new Rover(new Position(0,0, CompassDirection.W));
@@ -72,7 +72,7 @@ class RoverTest {
         CompassDirection resultTwo = rover.getRotateCompassDirection().apply(rover.getPosition().getFacing(), Instruction.R);
 
         // Assert
-        assertAll("Returns the correct rotation for a compass direction input and instruction",
+        assertAll("Returns the correct rotation for a West compass direction input and instruction",
                 () -> assertEquals(CompassDirection.S, resultOne),
                 () -> assertEquals(CompassDirection.N, resultTwo)
         );
@@ -93,7 +93,7 @@ class RoverTest {
         CompassDirection resultThree = roverThree.getRotateCompassDirection().apply(roverThree.getPosition().getFacing(), Instruction.M);
         CompassDirection resultFour = roverFour.getRotateCompassDirection().apply(roverFour.getPosition().getFacing(), Instruction.M);
         // Assert
-        assertAll("Returns the correct rotation for a compass direction input and instruction",
+        assertAll("Returns the correct rotation for a compass direction input and M Instruction input",
                 () -> assertEquals(CompassDirection.N, resultOne),
                 () -> assertEquals(CompassDirection.E, resultTwo),
                 () -> assertEquals(CompassDirection.S, resultThree),
