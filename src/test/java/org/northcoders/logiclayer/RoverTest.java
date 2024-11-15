@@ -78,4 +78,44 @@ class RoverTest {
         );
     }
 
+    @Test
+    @DisplayName("Returns the correct CompassDirection when Rover is given an the Move instruction")
+    void testRotateWithMoveInstruction(){
+        // Arrange
+        Rover rover = new Rover(new Position(0,0, CompassDirection.W));
+        Rover roverTwo = new Rover(new Position(0,0, CompassDirection.N));
+        Rover roverThree = new Rover(new Position(0,0, CompassDirection.E));
+        Rover roverFour = new Rover(new Position(0,0, CompassDirection.S));
+
+        // Act
+        CompassDirection resultOne = rover.getRotateCompassDirection().apply(rover.getPosition().getFacing(), Instruction.M);
+        CompassDirection resultTwo = roverTwo.getRotateCompassDirection().apply(rover.getPosition().getFacing(), Instruction.M);
+        CompassDirection resultThree = roverThree.getRotateCompassDirection().apply(rover.getPosition().getFacing(), Instruction.M);
+        CompassDirection resultFour = roverFour.getRotateCompassDirection().apply(rover.getPosition().getFacing(), Instruction.M);
+        // Assert
+        assertAll("Returns the correct rotation for a compass direction input and instruction",
+                () -> assertEquals(CompassDirection.W, resultOne),
+                () -> assertEquals(CompassDirection.N, resultTwo),
+                () -> assertEquals(CompassDirection.E, resultThree),
+                () -> assertEquals(CompassDirection.S, resultFour)
+        );
+    }
+
+    @Test
+    @DisplayName("Returns the correct CompassDirection when Rover is given null as an input")
+    void testRotateWithNullInput(){
+        // Arrange
+        Rover rover = new Rover(new Position(0,0, CompassDirection.W));
+
+        // Act
+        CompassDirection resultOne = rover.getRotateCompassDirection().apply(rover.getPosition().getFacing(), null);
+        CompassDirection resultTwo = rover.getRotateCompassDirection().apply(null, Instruction.R);
+
+        // Assert
+        assertAll("Returns the correct rotation for a compass direction input and instruction",
+                () -> assertEquals(CompassDirection.W, resultOne),
+                () -> assertEquals(CompassDirection.N, resultTwo)
+        );
+    }
+
 }
