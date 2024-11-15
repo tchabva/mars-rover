@@ -26,17 +26,22 @@ public class Rover {
         int y = position.getY();
         CompassDirection compassDirection = position.getFacing();
 
-        switch (instruction){
-            case L, R -> compassDirection = rotateCompassDirection.apply(compassDirection,instruction);
-            case M -> {
-                switch (compassDirection){
-                    case N, S -> y = nextPositionY.apply(y, compassDirection);
-                    case W, E -> x = nextPositionX.apply(x, compassDirection);
+        try {
+            switch (instruction){
+                case L, R -> compassDirection = rotateCompassDirection.apply(compassDirection,instruction);
+                case M -> {
+                    switch (compassDirection){
+                        case N, S -> y = nextPositionY.apply(y, compassDirection);
+                        case W, E -> x = nextPositionX.apply(x, compassDirection);
+                    }
                 }
             }
-        }
+            return new Position(x,y, compassDirection);
 
-        return new Position(x,y, compassDirection);
+        } catch (NullPointerException e) {
+            System.out.println("Invalid Instruction! No movement");
+            return new Position(x,y, compassDirection);
+        }
     }
 
     // Rotates the compass direction when given an Instruction of R/L and a CompassDirection
