@@ -91,4 +91,15 @@ public class Rover {
         }
     };
 
+    public BiFunction<CompassDirection, Instruction, CompassDirection> getRotateCompassDirection() {
+        return rotateCompassDirection;
+    }
+
+    public BiFunction<Integer, CompassDirection, Integer> getNextPositionX() {
+        return nextPositionX;
+    }
+
+    public BiFunction<Integer, CompassDirection, Integer> getNextPositionY() {
+        return nextPositionY;
+    }
 }
