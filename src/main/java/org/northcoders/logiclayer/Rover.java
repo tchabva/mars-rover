@@ -5,7 +5,6 @@ import org.northcoders.inputlayer.Instruction;
 import org.northcoders.inputlayer.Position;
 
 import java.util.function.BiFunction;
-import java.util.function.Function;
 
 public class Rover {
     private Position position;
@@ -28,17 +27,11 @@ public class Rover {
         CompassDirection compassDirection = position.getFacing();
 
         switch (instruction){
-            case L, R -> {
-                compassDirection = rotateCompassDirection.apply(compassDirection,instruction);
-            }
+            case L, R -> compassDirection = rotateCompassDirection.apply(compassDirection,instruction);
             case M -> {
                 switch (compassDirection){
-                    case N, S -> {
-                      y = nextPositionY.apply(y, compassDirection);
-                    }
-                    case W, E -> {
-                        x = nextPositionX.apply(x, compassDirection);
-                    }
+                    case N, S -> y = nextPositionY.apply(y, compassDirection);
+                    case W, E -> x = nextPositionX.apply(x, compassDirection);
                 }
             }
         }
