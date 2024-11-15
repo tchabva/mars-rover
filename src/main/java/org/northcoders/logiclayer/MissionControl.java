@@ -50,4 +50,15 @@ public class MissionControl {
         });
     }
 
+    public Plateau getPlateau() {
+        return plateau;
+    }
+
+    public List<Rover> getRoverList() {
+        return roverList;
+    }
+
+    public void printRoverPosition() {
+        this.roverList.forEach(System.out::println);
+    }
 }
