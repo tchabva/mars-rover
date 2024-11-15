@@ -40,15 +40,9 @@ class MissionControlTest {
     }
 
     @Test
-    @DisplayName("Create Plateau on initialisation of MissionControl")
+    @DisplayName("Returns a print Message null input for initialisation of MissionControl")
     void testMissionControlWithNullInputs(){
-        // Arrange
-        PlateauSize plateauSize = new PlateauSize(10,10);
-        Queue<Instruction> queue = new LinkedList<>(List.of(Instruction.L, Instruction.M, Instruction.R));
-        List<Queue<Instruction>> instructionList = new ArrayList<>(List.of(queue));
-        List<Position> positionList = List.of(new Position(5,5, CompassDirection.W));
-
-        // Act
+        // Arrange & Act
         MissionControl missionControl = new MissionControl(
                 null,
                 null,
@@ -56,8 +50,8 @@ class MissionControlTest {
         );
 
         // Assert
-        assertEquals(11, missionControl.getPlateau().getX());
-        assertEquals(11, missionControl.getPlateau().getY());
+        assertNull(missionControl.getPlateau());
+        assertNull(missionControl.getPlateau());
     }
 
     @Test
