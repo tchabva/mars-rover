@@ -1,6 +1,5 @@
 package org.northcoders.inputlayer.inputparsers;
 
-import org.northcoders.inputlayer.Instruction;
 import org.northcoders.inputlayer.PlateauSize;
 
 import java.util.function.Predicate;
@@ -24,7 +23,7 @@ public class PlateauSizeParser {
             try {
                 int x = Integer.parseInt(inputArray[0]);
                 int y = Integer.parseInt(inputArray[1]);
-                isValidPlateauDimensions = true;
+                isValidPlateauDimensions = x != 0 && y != 0;
                 return new PlateauSize(x, y);
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid input!");
