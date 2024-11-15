@@ -58,14 +58,15 @@ public class Rover {
                 return CompassDirection.N;
             }else if (compassDirection.equals(CompassDirection.N) && instruction.equals(Instruction.L)) {
                 return CompassDirection.W;
-            } else if(instruction.equals(Instruction.M)) {
-                return compassDirection;
             } else {
-                return null;
+                return compassDirection;
             }
         } catch (NullPointerException e){
-            System.out.println("System Error! invalid information");
-            return null;
+
+            if (compassDirection == null){
+                System.out.println("System Error!");
+            };
+            return compassDirection;
         }
     };
 
