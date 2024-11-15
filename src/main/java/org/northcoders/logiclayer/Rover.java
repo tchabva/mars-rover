@@ -41,24 +41,30 @@ public class Rover {
 
     // Rotates the compass direction when given an Instruction of R/L and a CompassDirection
     private final BiFunction<CompassDirection, Instruction, CompassDirection> rotateCompassDirection = (compassDirection, instruction) -> {
-
-        if (compassDirection.equals(CompassDirection.N) && instruction.equals(Instruction.R)){
-            return CompassDirection.E;
-        }else if (compassDirection.equals(CompassDirection.E) && instruction.equals(Instruction.R)){
-            return CompassDirection.S;
-        }else if (compassDirection.equals(CompassDirection.S) && instruction.equals(Instruction.R)) {
-            return CompassDirection.W;
-        }else if (compassDirection.equals(CompassDirection.W) && instruction.equals(Instruction.R)) {
-            return CompassDirection.N;
-        }else if (compassDirection.equals(CompassDirection.W) && instruction.equals(Instruction.L)) {
-            return CompassDirection.S;
-        }else if (compassDirection.equals(CompassDirection.S) && instruction.equals(Instruction.L)) {
-            return CompassDirection.E;
-        }else if (compassDirection.equals(CompassDirection.E) && instruction.equals(Instruction.L)) {
-            return CompassDirection.N;
-        }else if (compassDirection.equals(CompassDirection.N) && instruction.equals(Instruction.L)) {
-            return CompassDirection.W;
-        } else  {
+        try {
+            if (compassDirection.equals(CompassDirection.N) && instruction.equals(Instruction.R)){
+                return CompassDirection.E;
+            }else if (compassDirection.equals(CompassDirection.E) && instruction.equals(Instruction.R)){
+                return CompassDirection.S;
+            }else if (compassDirection.equals(CompassDirection.S) && instruction.equals(Instruction.R)) {
+                return CompassDirection.W;
+            }else if (compassDirection.equals(CompassDirection.W) && instruction.equals(Instruction.R)) {
+                return CompassDirection.N;
+            }else if (compassDirection.equals(CompassDirection.W) && instruction.equals(Instruction.L)) {
+                return CompassDirection.S;
+            }else if (compassDirection.equals(CompassDirection.S) && instruction.equals(Instruction.L)) {
+                return CompassDirection.E;
+            }else if (compassDirection.equals(CompassDirection.E) && instruction.equals(Instruction.L)) {
+                return CompassDirection.N;
+            }else if (compassDirection.equals(CompassDirection.N) && instruction.equals(Instruction.L)) {
+                return CompassDirection.W;
+            } else if(instruction.equals(Instruction.M)) {
+                return compassDirection;
+            } else {
+                return null;
+            }
+        } catch (NullPointerException e){
+            System.out.println("System Error! invalid information");
             return null;
         }
     };
