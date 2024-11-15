@@ -85,7 +85,7 @@ class MissionControlTest {
         List<Position> positionList = List.of(
                 new Position(5,5, CompassDirection.W),
                 new Position(4,4, CompassDirection.W)
-                );
+        );
 
         // Act
         MissionControl missionControl = new MissionControl(
@@ -119,5 +119,32 @@ class MissionControlTest {
 
         // Assert
         assertEquals(missionControl.getRoverList(), missionControl.getPlateau().getRoverList());
+    }
+
+    @Test
+    @DisplayName("Single Rover plateau moves the rover according to the input instruction")
+    void testMissionControlMovesRover(){
+        // Arrange
+        PlateauSize plateauSize = new PlateauSize(10,10);
+        Queue<Instruction> queue = new LinkedList<>(List.of(Instruction.L, Instruction.M, Instruction.M));
+        List<Queue<Instruction>> instructionList = new ArrayList<>(List.of(queue));
+        List<Position> positionList = List.of(new Position(5,5, CompassDirection.W));
+        MissionControl missionControl = new MissionControl(
+                plateauSize,
+                instructionList,
+                positionList
+        );
+
+        // Act
+        missionControl.printRoverPosition();
+        missionControl.moveRoverPosition(0);
+        missionControl.printRoverPosition();
+
+        // Assert
+        assertAll("Coordinates of the moved Rover",
+                () -> assertEquals(5, missionControl.getRoverList().getFirst().getPosition().getX()),
+                () -> assertEquals(3, missionControl.getRoverList().getFirst().getPosition().getY()),
+                () -> assertEquals(CompassDirection.S, missionControl.getRoverList().getFirst().getPosition().getFacing())
+        );
     }
 }
