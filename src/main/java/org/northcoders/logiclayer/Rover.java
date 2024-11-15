@@ -27,13 +27,27 @@ public class Rover {
         int y = position.getY();
         CompassDirection compassDirection = position.getFacing();
 
-
+        switch (instruction){
+            case L, R -> {
+                compassDirection = rotateCompassDirection.apply(compassDirection,instruction);
+            }
+            case M -> {
+                switch (compassDirection){
+                    case N, S -> {
+                      y = nextPositionY.apply(y, compassDirection);
+                    }
+                    case W, E -> {
+                        x = nextPositionX.apply(x, compassDirection);
+                    }
+                }
+            }
+        }
 
         return new Position(x,y, compassDirection);
     }
 
     // Rotates the compass direction when given an Instruction of R/L and a CompassDirection
-    private BiFunction<CompassDirection, Instruction, CompassDirection> rotateCompassDirection = (compassDirection, instruction) -> {
+    private final BiFunction<CompassDirection, Instruction, CompassDirection> rotateCompassDirection = (compassDirection, instruction) -> {
 
         if (compassDirection.equals(CompassDirection.N) && instruction.equals(Instruction.R)){
             return CompassDirection.E;
@@ -59,7 +73,7 @@ public class Rover {
     // TODO: Look into the Math.max() method.
 
     // Returns the nextPosition of X that is equal to or greater than 0
-    private BiFunction<Integer, CompassDirection, Integer> nextPositionX = (posX, direction) -> {
+    private final BiFunction<Integer, CompassDirection, Integer> nextPositionX = (posX, direction) -> {
         if (direction.equals(CompassDirection.W)){
             if((posX - 1) >= 0){
                 return posX - 1;
@@ -72,7 +86,7 @@ public class Rover {
     };
 
     // Returns the nextPosition of Y that is equal to or greater than 0
-    private BiFunction<Integer, CompassDirection, Integer> nextPositionY = (posY, direction) -> {
+    private final BiFunction<Integer, CompassDirection, Integer> nextPositionY = (posY, direction) -> {
         if (direction.equals(CompassDirection.S)){
             if((posY - 1) >= 0){
                 return posY - 1;
