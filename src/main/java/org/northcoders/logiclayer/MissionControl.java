@@ -9,27 +9,39 @@ import java.util.List;
 import java.util.Queue;
 
 public class MissionControl {
-    private final List<Position> roverPositions;
-    private final List<Queue<Instruction>> roverInstructions;
+    private final List<Queue<Instruction>> roverInstructions = new ArrayList<>();
     private final List<Rover> roverList = new ArrayList<>();
     private Plateau plateau;
 
+    /*
+    MissonControl constructor creates the plateau, the list of Rover objects and then a List of Instruction
+    Queues
+     */
     public MissionControl(PlateauSize plateauSize, List<Queue<Instruction>> roverInstructions, List<Position> roverPositions) {
-        this.roverInstructions = roverInstructions;
-        this.roverPositions = roverPositions;
-        createPlateau(plateauSize);
+        try {
+            createPlateau(plateauSize);
+        }catch (NullPointerException e){
+            System.out.println("No Plateau information provided");
+        }
+
+        if (roverPositions != null){
+            createRovers(roverPositions);
+            plateau.getRoverList().addAll(roverList);
+        }
+
+        if (roverInstructions != null){
+            this.roverInstructions.addAll(roverInstructions);
+        }
     }
 
-    // Creates a list of rovers
+    // Creates the list of rovers from the list of Position objects
     private void createRovers (List<Position> roverPositions){
         roverPositions.forEach(position -> roverList.add(new Rover(position)));
     }
 
     // creates a Plateau object, calls the createRovers method and assigns the list to the list in Plateau
-    public void createPlateau(PlateauSize plateauSize){
+    private void createPlateau(PlateauSize plateauSize){
         plateau = new Plateau(plateauSize);
-        createRovers(roverPositions);
-        plateau.getRoverList().addAll(roverList);
     }
 
     // Moves the Rover one instruction at a time and checks if the position is free and valid before moving the Rover.
