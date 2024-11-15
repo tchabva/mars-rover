@@ -25,13 +25,12 @@ public class Plateau {
     };
 
     public BiPredicate<Integer, Integer> isPositionFree = (posX, posY) ->{
-        for (Rover rover : roverList){
-            int roverPosX = rover.getPosition().getX();
-            int roverPosY = rover.getPosition().getY();
-
-            return roverPosX != posX || roverPosY != posY;
+        for (Rover rover : this.roverList){
+            if (posX.equals(rover.getPosition().getX()) && posY.equals(rover.getPosition().getY())){
+                return false;
+            }
         }
-        return false;
+        return true;
     };
 
     public int getY() {
@@ -41,4 +40,6 @@ public class Plateau {
     public int getX() {
         return x;
     }
+
+
 }
