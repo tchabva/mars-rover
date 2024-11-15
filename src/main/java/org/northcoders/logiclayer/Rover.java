@@ -40,7 +40,7 @@ public class Rover {
 
         } catch (NullPointerException e) {
             System.out.println("Invalid Instruction! No movement");
-            return new Position(x,y, compassDirection);
+            return position;
         }
     }
 
