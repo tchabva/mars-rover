@@ -114,4 +114,9 @@ public class Rover {
     public BiFunction<Integer, CompassDirection, Integer> getNextPositionY() {
         return nextPositionY;
     }
+
+    @Override
+    public String toString() {
+        return position.getX() + " " + position.getY() + " " + position.getFacing().name();
+    }
 }

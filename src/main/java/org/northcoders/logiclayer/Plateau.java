@@ -1,14 +1,15 @@
 package org.northcoders.logiclayer;
 
 import org.northcoders.inputlayer.PlateauSize;
+import org.northcoders.inputlayer.Position;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiPredicate;
 
 public class Plateau {
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
     private final List<Rover> roverList = new ArrayList<>();
 
     public Plateau(PlateauSize plateauSize) {
@@ -20,18 +21,37 @@ public class Plateau {
         return roverList;
     }
 
-    public BiPredicate<Integer, Integer> isValidPosition = (posX, posY) ->{
-        return posX <= x && posX >= 0 && posY <= y && posY >= 0;
-    };
+    public boolean isPositionValid(int posX, int posY){
+        return posX <= this.x && posX >= 0 && posY <= this.y && posY >= 0;
+    }
+
+    public boolean isPositionEmpty(Position nextPosition, Rover rover){
+        List<Rover> roverCheckList = new ArrayList<>(roverList);
+        roverCheckList.remove(rover);
+        if (!roverCheckList.isEmpty()){
+            for (Rover otherRover : roverCheckList){
+                return otherRover.getPosition().getX() != nextPosition.getX() || otherRover.getPosition().getY() != nextPosition.getY();
+            }
+        }
+        return true;
+    }
 
     public BiPredicate<Integer, Integer> isPositionFree = (posX, posY) ->{
-        for (Rover rover : roverList){
-            int roverPosX = rover.getPosition().getX();
-            int roverPosY = rover.getPosition().getY();
-
-            return roverPosX != posX || roverPosY != posY;
+        for (Rover rover : this.roverList){
+            if (posX.equals(rover.getPosition().getX()) && posY.equals(rover.getPosition().getY())){
+                return false;
+            }
         }
-        return false;
+        return true;
     };
+
+    public int getY() {
+        return y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
 
 }
