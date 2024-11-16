@@ -148,4 +148,60 @@ class MissionControlTest {
                 () -> assertEquals(CompassDirection.S, missionControl.getRoverList().getFirst().getPosition().getFacing())
         );
     }
+
+    @Test
+    @DisplayName("MissionControl moves the multiple Rovers on the plateau according to the input instruction")
+    void testMissionControlMovesMultipleRovers(){
+        // Arrange
+        PlateauSize plateauSize = new PlateauSize(5,5);
+        Queue<Instruction> instructionsListOne = new LinkedList<>(List.of(
+                Instruction.L,
+                Instruction.M,
+                Instruction.L,
+                Instruction.M,
+                Instruction.L,
+                Instruction.M,
+                Instruction.L,
+                Instruction.M,
+                Instruction.M
+        ));
+        Queue<Instruction> instructionsListTwo = new LinkedList<>(List.of(
+                Instruction.M,
+                Instruction.M,
+                Instruction.R,
+                Instruction.M,
+                Instruction.M,
+                Instruction.R,
+                Instruction.M,
+                Instruction.R,
+                Instruction.R,
+                Instruction.M
+        ));
+        List<Queue<Instruction>> instructionList = new ArrayList<>(List.of(instructionsListOne, instructionsListTwo));
+        List<Position> positionList = List.of(
+                new Position(1,2, CompassDirection.N),
+                new Position(3,3, CompassDirection.E)
+        );
+        MissionControl missionControl = new MissionControl(
+                plateauSize,
+                instructionList,
+                positionList
+        );
+
+        // Act
+        missionControl.printRoverPosition();
+        missionControl.moveRoverPosition();
+        System.out.println();
+        missionControl.printRoverPosition();
+
+        // Assert
+        assertAll("Coordinates of the moved Rover",
+                () -> assertEquals(1, missionControl.getRoverList().getFirst().getPosition().getX()),
+                () -> assertEquals(3, missionControl.getRoverList().getFirst().getPosition().getY()),
+                () -> assertEquals(CompassDirection.N, missionControl.getRoverList().getFirst().getPosition().getFacing()),
+                () -> assertEquals(5, missionControl.getRoverList().getLast().getPosition().getX()),
+                () -> assertEquals(1, missionControl.getRoverList().getLast().getPosition().getY()),
+                () -> assertEquals(CompassDirection.E, missionControl.getRoverList().getLast().getPosition().getFacing())
+        );
+    }
 }
