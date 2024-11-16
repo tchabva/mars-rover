@@ -59,8 +59,6 @@ class MissionControlTest {
     void testMissionControlWithNullInstructionInputs(){
         // Arrange
         PlateauSize plateauSize = new PlateauSize(10,10);
-        Queue<Instruction> queue = new LinkedList<>(List.of(Instruction.L, Instruction.M, Instruction.R));
-        List<Queue<Instruction>> instructionList = new ArrayList<>(List.of(queue));
         List<Position> positionList = List.of(new Position(5,5, CompassDirection.W));
 
         // Act
@@ -126,7 +124,10 @@ class MissionControlTest {
     void testMissionControlMovesRover(){
         // Arrange
         PlateauSize plateauSize = new PlateauSize(10,10);
-        Queue<Instruction> queue = new LinkedList<>(List.of(Instruction.L, Instruction.M, Instruction.M));
+        Queue<Instruction> queue = new LinkedList<>(List.of(Instruction.L,
+                Instruction.M,
+                Instruction.M)
+        );
         List<Queue<Instruction>> instructionList = new ArrayList<>(List.of(queue));
         List<Position> positionList = List.of(new Position(5,5, CompassDirection.W));
         MissionControl missionControl = new MissionControl(
@@ -137,7 +138,7 @@ class MissionControlTest {
 
         // Act
         missionControl.printRoverPosition();
-        missionControl.moveRoverPosition(0);
+        missionControl.moveRoverPosition();
         missionControl.printRoverPosition();
 
         // Assert
