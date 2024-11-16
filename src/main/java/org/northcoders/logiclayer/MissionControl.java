@@ -47,15 +47,15 @@ public class MissionControl {
     // Moves the Rover one instruction at a time and checks if the position is free and valid before moving the Rover.
     public void moveRoverPosition(){
 
-        for(Rover rover : roverList){
-            for(Queue<Instruction> instructions : roverInstructions){
-                while (!instructions.isEmpty()){
-                    Position nextPosition = rover.nextPosition(instructions.remove());
-                    boolean isPositionEmpty = plateau.isPositionEmpty(nextPosition, rover);
-                    boolean isPositionValid  = plateau.isPositionValid(nextPosition.getX(), nextPosition.getY());
-                    if (isPositionEmpty && isPositionValid){
-                        rover.setPosition(nextPosition);
-                    }
+        for (int i = 0; i < roverList.size(); i++) {
+            Rover rover = roverList.get(i);
+            Queue<Instruction> currentRoverInstructions = roverInstructions.get(i);
+            while (!currentRoverInstructions.isEmpty()){
+                Position nextPosition = rover.nextPosition(currentRoverInstructions.remove());
+                boolean isPositionEmpty = plateau.isPositionEmpty(nextPosition, rover);
+                boolean isPositionValid  = plateau.isPositionValid(nextPosition.getX(), nextPosition.getY());
+                if (isPositionEmpty && isPositionValid){
+                    rover.setPosition(nextPosition);
                 }
             }
         }
