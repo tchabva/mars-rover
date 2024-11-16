@@ -14,7 +14,7 @@ public class MissionControl {
     private Plateau plateau;
 
     /*
-    MissonControl constructor creates the plateau, the list of Rover objects and then a List of Instruction
+    MissionControl constructor creates the plateau, the list of Rover objects and then a List of Instruction
     Queues
      */
     public MissionControl(PlateauSize plateauSize, List<Queue<Instruction>> roverInstructions, List<Position> roverPositions) {
@@ -51,13 +51,12 @@ public class MissionControl {
             for(Queue<Instruction> instructions : roverInstructions){
                 while (!instructions.isEmpty()){
                     Position nextPosition = rover.nextPosition(instructions.remove());
-                    boolean isPositionEmpty = plateau.isPositionFree.test(nextPosition.getX(), nextPosition.getY());
-                    boolean isPositionValid  = plateau.isValidPosition.test(nextPosition.getX(), nextPosition.getY());
+                    boolean isPositionEmpty = plateau.isPositionEmpty(nextPosition, rover);
+                    boolean isPositionValid  = plateau.isPositionValid(nextPosition.getX(), nextPosition.getY());
                     if (isPositionEmpty && isPositionValid){
                         rover.setPosition(nextPosition);
                     }
                 }
-
             }
         }
     }
