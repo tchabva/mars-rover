@@ -9,7 +9,7 @@ import org.northcoders.inputlayer.Position;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlateauTest {
-
+// TODO: UPDATE TESTS FOR isPositionEmpty boolean
     @Test
     @DisplayName("Returns true if x and y are within the plateau boundary")
     void testReturnsTrueIfXAndYAreInPlateau(){
