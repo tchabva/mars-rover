@@ -7,18 +7,11 @@ import org.northcoders.inputlayer.inputparsers.InstructionParser;
 import org.northcoders.inputlayer.inputparsers.PlateauSizeParser;
 import org.northcoders.inputlayer.inputparsers.PositionParser;
 import org.northcoders.logiclayer.MissionControl;
-import org.northcoders.logiclayer.Rover;
 
-import java.lang.management.MonitorInfo;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
-import static org.northcoders.inputlayer.inputparsers.InstructionParser.parseInstructions;
-
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
         ArrayList<String> input = new ArrayList<>(List.of(
@@ -31,7 +24,7 @@ public class Main {
 
         PlateauSizeParser plateauSizeParser = new PlateauSizeParser();
         PositionParser positionParser = new PositionParser();
-
+        InstructionParser instructionParser = new InstructionParser();
 
         PlateauSize plateauSize = plateauSizeParser.parsePlateauSize(input.getFirst());
 
@@ -42,7 +35,7 @@ public class Main {
 
         List<Queue<Instruction>> queueList = new ArrayList<>();
         for (int i = 2; i < input.size(); i += 2) {
-            queueList.add(parseInstructions(input.get(i)));
+            queueList.add(instructionParser.parseInstructions(input.get(i)));
         }
         System.out.println(queueList);
 
