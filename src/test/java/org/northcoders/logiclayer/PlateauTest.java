@@ -17,10 +17,10 @@ class PlateauTest {
         Plateau plateau = new Plateau(new PlateauSize(10, 10));
 
         // Act
-        boolean result = plateau.isValidPosition.test(1,1);
-        boolean resultTwo = plateau.isValidPosition.test(11,11);
-        boolean resultThree = plateau.isValidPosition.test(5,1);
-        boolean resultFour = plateau.isValidPosition.test(0,0);
+        boolean result = plateau.isPositionValid(1,1);
+        boolean resultTwo = plateau.isPositionValid(11,11);
+        boolean resultThree = plateau.isPositionValid(5,1);
+        boolean resultFour = plateau.isPositionValid(0,0);
 
         // Assert
         assertAll("Return true as they are in all the plateau bounds",
@@ -38,10 +38,10 @@ class PlateauTest {
         Plateau plateau = new Plateau(new PlateauSize(10, 10));
 
         // Act
-        boolean result = plateau.isValidPosition.test(12,1);
-        boolean resultTwo = plateau.isValidPosition.test(11,21);
-        boolean resultThree = plateau.isValidPosition.test(-1,1);
-        boolean resultFour = plateau.isValidPosition.test(12,12);
+        boolean result = plateau.isPositionValid(12,1);
+        boolean resultTwo = plateau.isPositionValid(11,21);
+        boolean resultThree = plateau.isPositionValid(-1,1);
+        boolean resultFour = plateau.isPositionValid(12,12);
 
         // Assert
         assertAll("Return false as they are not all in the plateau bounds",
