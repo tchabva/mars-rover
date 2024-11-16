@@ -24,6 +24,10 @@ public class Plateau {
         return posX <= x && posX >= 0 && posY <= y && posY >= 0;
     };
 
+    public boolean isPositionValid(int posX, int posY){
+        return posX <= this.x && posX >= 0 && posY <= this.y && posY >= 0;
+    }
+
     public BiPredicate<Integer, Integer> isPositionFree = (posX, posY) ->{
         for (Rover rover : this.roverList){
             if (posX.equals(rover.getPosition().getX()) && posY.equals(rover.getPosition().getY())){
