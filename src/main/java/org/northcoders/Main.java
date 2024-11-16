@@ -41,7 +41,7 @@ public class Main {
         }
 
         List<Queue<Instruction>> queueList = new ArrayList<>();
-        for (int i = 2; i < input.size(); i += 2)
+        for (int i = 2; i < input.size(); i += 2) {
             queueList.add(parseInstructions(input.get(i)));
         }
         System.out.println(queueList);
