@@ -12,9 +12,10 @@ public class Plateau {
     private final int y;
     private final List<Rover> roverList = new ArrayList<>();
 
+    // Will only need to add 1 to each dimension if implementing a method to print out the array
     public Plateau(PlateauSize plateauSize) {
-        this.x = plateauSize.getX()+1;
-        this.y = plateauSize.getY()+1;
+        this.x = plateauSize.getX();
+        this.y = plateauSize.getY();
     }
 
     public List<Rover> getRoverList() {

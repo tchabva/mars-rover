@@ -7,11 +7,11 @@ import java.util.Queue;
 
 public class InstructionParser {
 
-    private static boolean isValidInstruction;
+    private boolean isValidInstruction;
 
     // Takes an input and returns Queue of Instructions if the input is valid.
     // Assigns isValidInstruction to true or false depending on the input.
-    public static Queue<Instruction> parseInstructions(String input) {
+    public Queue<Instruction> parseInstructions(String input) {
         Queue<Instruction> instructions = new LinkedList<>();
 
         if (input == null){
@@ -39,7 +39,7 @@ public class InstructionParser {
         return instructions;
     }
 
-    public static boolean isValidInstruction() {
+    public boolean isValidInstruction() {
         return isValidInstruction;
     }
 }
