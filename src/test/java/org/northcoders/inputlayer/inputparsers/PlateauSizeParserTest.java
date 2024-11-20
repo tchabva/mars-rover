@@ -23,10 +23,10 @@ class PlateauSizeParserTest {
 
         // Assert
         assertAll("Confirms the PlateauSizeParser returns a returns PlateauSize object",
-                () -> assertEquals(1000, plateauSizeOne.getX()),
-                () -> assertEquals(10, plateauSizeOne.getY()),
-                () -> assertEquals(5, plateauSizeTwo.getX()),
-                () -> assertEquals(11, plateauSizeTwo.getY()),
+                () -> assertEquals(1000, plateauSizeOne.x()),
+                () -> assertEquals(10, plateauSizeOne.y()),
+                () -> assertEquals(5, plateauSizeTwo.x()),
+                () -> assertEquals(11, plateauSizeTwo.y()),
                 () -> assertTrue(plateauSizeParser.isValidPlateauDimensions())
 
         );
@@ -48,14 +48,9 @@ class PlateauSizeParserTest {
 
         // Assert
         assertAll("Confirms the PlateauSizeParser returns a returns PlateauSize object",
-                () -> assertEquals(0, plateauSizeOne.getX()),
-                () -> assertEquals(0, plateauSizeOne.getY()),
-                () -> assertEquals(0, plateauSizeTwo.getX()),
-                () -> assertEquals(0, plateauSizeTwo.getY()),
-                () -> assertEquals(0, plateauSizeThree.getX()),
-                () -> assertEquals(0, plateauSizeThree.getY()),
-                () -> assertFalse(plateauSizeParser.isValidPlateauDimensions())
-
+                () -> assertNull(plateauSizeOne),
+                () -> assertNull(plateauSizeTwo),
+                () -> assertNull(plateauSizeThree)
         );
     }
 
@@ -69,10 +64,6 @@ class PlateauSizeParserTest {
         PlateauSize plateauSizeOne = plateauSizeParser.parsePlateauSize(null);
 
         // Assert
-        assertAll("Confirms the PlateauSizeParser returns a returns PlateauSize object",
-                () -> assertEquals(0, plateauSizeOne.getX()),
-                () -> assertEquals(0, plateauSizeOne.getY()),
-                () -> assertFalse(plateauSizeParser.isValidPlateauDimensions())
-        );
+        assertNull(plateauSizeOne);
     }
 }
