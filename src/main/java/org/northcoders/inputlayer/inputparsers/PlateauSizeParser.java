@@ -15,11 +15,11 @@ public class PlateauSizeParser {
         if (input == null){
             System.out.println(retryString);
             isValidPlateauDimensions = false;
-            return new PlateauSize(-1,-1);
+            return null;
         } else if (!isValidString.test(input)) {
             System.out.println(retryString);
             isValidPlateauDimensions = false;
-            return new PlateauSize(-1,-1);
+            return null;
         }else {
             String[] inputArray = input.split(" ");
             try {
@@ -30,7 +30,7 @@ public class PlateauSizeParser {
             } catch (NumberFormatException e) {
                 System.out.println(retryString);
                 isValidPlateauDimensions = false;
-                return new PlateauSize(-1,-1);
+                return null;
             }
         }
     }
