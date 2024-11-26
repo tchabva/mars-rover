@@ -53,7 +53,7 @@ public class MissionControl {
             while (!currentRoverInstructions.isEmpty()){
                 Position nextPosition = rover.nextPosition(currentRoverInstructions.remove());
                 boolean isPositionEmpty = plateau.isPositionEmpty(nextPosition, rover);
-                boolean isPositionValid  = plateau.isPositionValid(nextPosition.getX(), nextPosition.getY());
+                boolean isPositionValid  = plateau.isPositionValid(nextPosition.x(), nextPosition.y());
                 if (isPositionEmpty && isPositionValid){
                     rover.setPosition(nextPosition);
                 }
