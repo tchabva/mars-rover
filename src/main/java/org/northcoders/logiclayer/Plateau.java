@@ -14,8 +14,8 @@ public class Plateau {
 
     // Will only need to add 1 to each dimension if implementing a method to print out the array
     public Plateau(PlateauSize plateauSize) {
-        this.x = plateauSize.getX();
-        this.y = plateauSize.getY();
+        this.x = plateauSize.x();
+        this.y = plateauSize.y();
     }
 
     public List<Rover> getRoverList() {
