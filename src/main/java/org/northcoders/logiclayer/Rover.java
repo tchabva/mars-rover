@@ -22,9 +22,9 @@ public class Rover {
     }
 
     public Position nextPosition(Instruction instruction){
-        int x = position.getX();
-        int y = position.getY();
-        CompassDirection compassDirection = position.getFacing();
+        int x = position.x();
+        int y = position.y();
+        CompassDirection compassDirection = position.facing();
 
         try {
             switch (instruction){
@@ -45,6 +45,7 @@ public class Rover {
     }
 
     // Rotates the compass direction when given an Instruction of R/L and a CompassDirection
+    // TODO: Helper Methods and Switch statements for readability
     private final BiFunction<CompassDirection, Instruction, CompassDirection> rotateCompassDirection = (compassDirection, instruction) -> {
         try {
             if (compassDirection.equals(CompassDirection.N) && instruction.equals(Instruction.R)){
@@ -117,6 +118,6 @@ public class Rover {
 
     @Override
     public String toString() {
-        return position.getX() + " " + position.getY() + " " + position.getFacing().name();
+        return position.x() + " " + position.y() + " " + position.facing().name();
     }
 }
