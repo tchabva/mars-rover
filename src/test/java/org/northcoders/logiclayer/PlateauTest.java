@@ -18,7 +18,7 @@ class PlateauTest {
 
         // Act
         boolean result = plateau.isPositionValid(1,1);
-        boolean resultTwo = plateau.isPositionValid(11,11);
+        boolean resultTwo = plateau.isPositionValid(10,10);
         boolean resultThree = plateau.isPositionValid(5,1);
         boolean resultFour = plateau.isPositionValid(0,0);
 

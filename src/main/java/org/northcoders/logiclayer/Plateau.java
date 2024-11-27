@@ -12,10 +12,10 @@ public class Plateau {
     private final int y;
     private final List<Rover> roverList = new ArrayList<>();
 
-    // Will only need to add 1 to each dimension if implementing a method to print out the array
+    // NOTE: will need to add 1 to each dimension if implementing a method to print out the array
     public Plateau(PlateauSize plateauSize) {
-        this.x = plateauSize.getX();
-        this.y = plateauSize.getY();
+        this.x = plateauSize.x();
+        this.y = plateauSize.y();
     }
 
     public List<Rover> getRoverList() {
@@ -31,7 +31,7 @@ public class Plateau {
         roverCheckList.remove(rover);
         if (!roverCheckList.isEmpty()){
             for (Rover otherRover : roverCheckList){
-                return otherRover.getPosition().getX() != nextPosition.getX() || otherRover.getPosition().getY() != nextPosition.getY();
+                return otherRover.getPosition().x() != nextPosition.x() || otherRover.getPosition().y() != nextPosition.y();
             }
         }
         return true;
@@ -39,7 +39,7 @@ public class Plateau {
 
     public BiPredicate<Integer, Integer> isPositionFree = (posX, posY) ->{
         for (Rover rover : this.roverList){
-            if (posX.equals(rover.getPosition().getX()) && posY.equals(rover.getPosition().getY())){
+            if (posX.equals(rover.getPosition().x()) && posY.equals(rover.getPosition().y())){
                 return false;
             }
         }
@@ -53,6 +53,4 @@ public class Plateau {
     public int getX() {
         return x;
     }
-
-
 }

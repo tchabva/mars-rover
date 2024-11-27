@@ -24,13 +24,13 @@ class PositionParserTest {
 
         // Assert
         assertAll("Confirms the PlateauSizeParser returns a returns PlateauSize object",
-                () -> assertEquals(0, positionOne.getX()),
-                () -> assertEquals(0, positionOne.getY()),
-                () -> assertEquals(CompassDirection.N, positionOne.getFacing()),
+                () -> assertEquals(0, positionOne.x()),
+                () -> assertEquals(0, positionOne.y()),
+                () -> assertEquals(CompassDirection.N, positionOne.facing()),
                 () -> assertTrue(positionParser.isValidPosition()),
-                () -> assertEquals(5, positionTwo.getX()),
-                () -> assertEquals(11, positionTwo.getY()),
-                () -> assertEquals(CompassDirection.W, positionTwo.getFacing()),
+                () -> assertEquals(5, positionTwo.x()),
+                () -> assertEquals(11, positionTwo.y()),
+                () -> assertEquals(CompassDirection.W, positionTwo.facing()),
                 () -> assertTrue(positionParser.isValidPosition())
         );
     }
@@ -47,9 +47,9 @@ class PositionParserTest {
 
         // Assert
         assertAll("Confirms the PlateauSizeParser returns a returns PlateauSize object",
-                () -> assertEquals(0, positionOne.getX()),
-                () -> assertEquals(0, positionOne.getY()),
-                () -> assertEquals(CompassDirection.N, positionOne.getFacing()),
+                () -> assertEquals(0, positionOne.x()),
+                () -> assertEquals(0, positionOne.y()),
+                () -> assertEquals(CompassDirection.N, positionOne.facing()),
                 () -> assertTrue(positionParser.isValidPosition())
         );
     }
@@ -69,17 +69,17 @@ class PositionParserTest {
 
         // Assert
         assertAll("Confirms the PlateauSizeParser returns a returns PlateauSize object",
-                () -> assertEquals(-1, positionOne.getX()),
-                () -> assertEquals(-1, positionOne.getY()),
-                () -> assertEquals(CompassDirection.N, positionOne.getFacing()),
+                () -> assertEquals(-1, positionOne.x()),
+                () -> assertEquals(-1, positionOne.y()),
+                () -> assertEquals(CompassDirection.N, positionOne.facing()),
                 () -> assertFalse(positionParser.isValidPosition()),
-                () -> assertEquals(-1, positionTwo.getX()),
-                () -> assertEquals(-1, positionTwo.getY()),
-                () -> assertEquals(CompassDirection.N, positionTwo.getFacing()),
+                () -> assertEquals(-1, positionTwo.x()),
+                () -> assertEquals(-1, positionTwo.y()),
+                () -> assertEquals(CompassDirection.N, positionTwo.facing()),
                 () -> assertFalse(positionParser.isValidPosition()),
-                () -> assertEquals(-1, positionTwo.getX()),
-                () -> assertEquals(-1, positionTwo.getY()),
-                () -> assertEquals(CompassDirection.N, positionTwo.getFacing()),
+                () -> assertEquals(-1, positionTwo.x()),
+                () -> assertEquals(-1, positionTwo.y()),
+                () -> assertEquals(CompassDirection.N, positionTwo.facing()),
                 () -> assertFalse(positionParser.isValidPosition())
 
         );
@@ -96,9 +96,9 @@ class PositionParserTest {
 
         // Assert
         assertAll("Confirms the PlateauSizeParser returns a returns PlateauSize object",
-                () -> assertEquals(-1, positionOne.getX()),
-                () -> assertEquals(-1, positionOne.getY()),
-                () -> assertEquals(CompassDirection.N, positionOne.getFacing()),
+                () -> assertEquals(-1, positionOne.x()),
+                () -> assertEquals(-1, positionOne.y()),
+                () -> assertEquals(CompassDirection.N, positionOne.facing()),
                 () -> assertFalse(positionParser.isValidPosition())
         );
     }

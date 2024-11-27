@@ -35,8 +35,8 @@ class MissionControlTest {
         missionControl.printRoverPosition();
 
         // Assert
-        assertEquals(11, missionControl.getPlateau().getX());
-        assertEquals(11, missionControl.getPlateau().getY());
+        assertEquals(10, missionControl.getPlateau().getX());
+        assertEquals(10, missionControl.getPlateau().getY());
     }
 
     @Test
@@ -69,8 +69,8 @@ class MissionControlTest {
         );
 
         // Assert
-        assertEquals(11, missionControl.getPlateau().getX());
-        assertEquals(11, missionControl.getPlateau().getY());
+        assertEquals(10, missionControl.getPlateau().getX());
+        assertEquals(10, missionControl.getPlateau().getY());
     }
 
     @Test
@@ -143,9 +143,9 @@ class MissionControlTest {
 
         // Assert
         assertAll("Coordinates of the moved Rover",
-                () -> assertEquals(5, missionControl.getRoverList().getFirst().getPosition().getX()),
-                () -> assertEquals(3, missionControl.getRoverList().getFirst().getPosition().getY()),
-                () -> assertEquals(CompassDirection.S, missionControl.getRoverList().getFirst().getPosition().getFacing())
+                () -> assertEquals(5, missionControl.getRoverList().getFirst().getPosition().x()),
+                () -> assertEquals(3, missionControl.getRoverList().getFirst().getPosition().y()),
+                () -> assertEquals(CompassDirection.S, missionControl.getRoverList().getFirst().getPosition().facing())
         );
     }
 
@@ -196,12 +196,12 @@ class MissionControlTest {
 
         // Assert
         assertAll("Coordinates of the moved Rover",
-                () -> assertEquals(1, missionControl.getRoverList().getFirst().getPosition().getX()),
-                () -> assertEquals(3, missionControl.getRoverList().getFirst().getPosition().getY()),
-                () -> assertEquals(CompassDirection.N, missionControl.getRoverList().getFirst().getPosition().getFacing()),
-                () -> assertEquals(5, missionControl.getRoverList().getLast().getPosition().getX()),
-                () -> assertEquals(1, missionControl.getRoverList().getLast().getPosition().getY()),
-                () -> assertEquals(CompassDirection.E, missionControl.getRoverList().getLast().getPosition().getFacing())
+                () -> assertEquals(1, missionControl.getRoverList().getFirst().getPosition().x()),
+                () -> assertEquals(3, missionControl.getRoverList().getFirst().getPosition().y()),
+                () -> assertEquals(CompassDirection.N, missionControl.getRoverList().getFirst().getPosition().facing()),
+                () -> assertEquals(5, missionControl.getRoverList().getLast().getPosition().x()),
+                () -> assertEquals(1, missionControl.getRoverList().getLast().getPosition().y()),
+                () -> assertEquals(CompassDirection.E, missionControl.getRoverList().getLast().getPosition().facing())
         );
     }
 }
