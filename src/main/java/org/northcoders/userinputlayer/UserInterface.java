@@ -13,14 +13,14 @@ import java.util.Queue;
 import java.util.Scanner;
 
 public class UserInterface {
-    private Scanner scanner;
+    private final Scanner scanner;
     private String nextLine;
-    private PlateauSizeParser plateauSizeParser;
-    private PositionParser positionParser;
-    private InstructionParser instructionParser;
+    private final PlateauSizeParser plateauSizeParser;
+    private final PositionParser positionParser;
+    private final InstructionParser instructionParser;
     private PlateauSize plateauSize;
-    private List<Position> positions = new ArrayList<>();
-    private List<Queue<Instruction>> instrusctions = new ArrayList<>();
+    private final List<Position> positions = new ArrayList<>();
+    private final List<Queue<Instruction>> instructions = new ArrayList<>();
 
     public UserInterface() {
         this.scanner = new Scanner(System.in);
@@ -48,7 +48,6 @@ public class UserInterface {
         }
 
         System.out.println(plateauSize.toString());
-
     }
     // TODO: Diagram and how I want the Mars Rover project to work
 }
