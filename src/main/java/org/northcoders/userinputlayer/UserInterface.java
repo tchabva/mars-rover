@@ -37,8 +37,10 @@ public class UserInterface {
 
     public void getPlateauInput(){
         System.out.print(
-                "Choose the size of the plateau you want to explore\n" +
-                        "Input the length and the width of the area in the following format \"10 10\" or \"4 4\":\n"
+                """
+                        Choose the size of the plateau you want to explore
+                        Input the length and the width of the area in the following format "10 10" or "4 4":
+                        """
         );
 
         //While loop for obtaining a valid plateau dimension input
@@ -47,7 +49,20 @@ public class UserInterface {
             this.plateauSize = plateauSizeParser.parsePlateauSize(inputString);
         }
 
+        // TODO plateau size toString method override
         System.out.println(plateauSize.toString());
+    }
+
+    public void getPositionInput(){
+        System.out.print(
+                """
+                        
+                        Choose where you want to deploy your Rover!
+                        Input the X and Y coordinates that are within on Plateau and the direction your Rover is facing.
+                        The possible directions are the Compass directions: N = North, E = East, S = South and W = West
+                        Please use the following format "0 0 N" or "1 3 E":"""
+        );
+
     }
     // TODO: Diagram and how I want the Mars Rover project to work
 }
