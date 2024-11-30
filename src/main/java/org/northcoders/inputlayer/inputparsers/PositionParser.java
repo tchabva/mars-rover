@@ -4,6 +4,7 @@ import org.northcoders.inputlayer.CompassDirection;
 import org.northcoders.inputlayer.Position;
 
 import javax.naming.InsufficientResourcesException;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -45,6 +46,12 @@ public class PositionParser {
         Matcher matcher = pattern.matcher(input);
         return matcher.find();
     };
+
+
+    public boolean isPositionFree(List<Position> positions, Position newPosition){
+
+        return true;
+    }
 
     public boolean isValidPosition() {
         return isValidPosition;
