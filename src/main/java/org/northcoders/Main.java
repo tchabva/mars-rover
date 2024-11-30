@@ -12,5 +12,7 @@ public class Main {
         userInterface.getPlateauInput();
 
         userInterface.getPositionInput();
+
+        userInterface.getInstructionInput();
     }
 }
