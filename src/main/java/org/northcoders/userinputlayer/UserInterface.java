@@ -12,9 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
+import java.util.function.Supplier;
 
 public class UserInterface {
-    private final Scanner scanner;
+    private Scanner scanner;
     private String nextLine;
     private final PlateauSizeParser plateauSizeParser;
     private final PositionParser positionParser;
@@ -109,5 +110,52 @@ public class UserInterface {
             }
         }
         System.out.println(instructionsQueueList.getLast());
+    }
+
+
+    public boolean addAnotherRover(){
+        String userInput = scanner.nextLine();
+        System.out.print(
+                """
+                        
+                        Do you want to add another Rover to your plateau?
+                        If so, please input "Y" or "Yes", otherwise press enter to proceed:
+                        """
+        );
+        return userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("y");
+
+        /*
+         TODO: If I add every new rover to my temporary plateau object, I should be able confirm if the position is free
+           Might need a addAnotherRoverInputParser to process the logic for this method and I have to decide whether
+           entering a non valid input
+         */
+        //  is free.
+        // Might need anotherRover Input parser and need to decide if not answering yes will keep  you in a loop or
+
+    }
+
+    public Supplier<Boolean> addAnotherRover = () ->{
+        String userInput = scanner.nextLine();
+        System.out.print(
+                """
+                        
+                        Do you want to add another Rover to your plateau?
+                        If so, please input "Y" or "Yes", otherwise press enter to proceed:
+                        """
+        );
+        return userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("y");
+
+        /*
+         TODO: If I add every new rover to my temporary plateau object, I should be able confirm if the position is free
+           Might need a addAnotherRoverInputParser to process the logic for this method and I have to decide whether
+           entering a non valid input
+         */
+        //  is free.
+        // Might need anotherRover Input parser and need to decide if not answering yes will keep  you in a loop or
+    };
+
+    public void getPositionAndInstructions(){
+        getPositionInput();
+        getInstructionInput();
     }
 }
