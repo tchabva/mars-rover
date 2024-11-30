@@ -12,7 +12,7 @@ class PositionParserTest {
     // TODO: look into @BeforeEach
     @Test
     @DisplayName("Returns valid Position object with a valid string input")
-    void testPlateauSizeParser(){
+    void testPositionSizeParser(){
         // Arrange
         PositionParser positionParser = new PositionParser();
         String inputOne = "0 0 N";
@@ -23,7 +23,7 @@ class PositionParserTest {
         Position positionTwo = positionParser.positionParser(inputTwo);
 
         // Assert
-        assertAll("Confirms the PlateauSizeParser returns a returns PlateauSize object",
+        assertAll("Confirms the PositionSizeParser returns a returns PositionSize object",
                 () -> assertEquals(0, positionOne.x()),
                 () -> assertEquals(0, positionOne.y()),
                 () -> assertEquals(CompassDirection.N, positionOne.facing()),
@@ -37,7 +37,7 @@ class PositionParserTest {
 
     @Test
     @DisplayName("Returns valid Position object with a valid lowercase string input")
-    void testPlateauSizeParserIsCaseSafe(){
+    void testPositionSizeParserIsCaseSafe(){
         // Arrange
         PositionParser positionParser = new PositionParser();
         String inputOne = "0 0 n";
@@ -46,7 +46,7 @@ class PositionParserTest {
         Position positionOne = positionParser.positionParser(inputOne);
 
         // Assert
-        assertAll("Confirms the PlateauSizeParser returns a returns PlateauSize object",
+        assertAll("Confirms the PositionSizeParser returns a returns PositionSize object",
                 () -> assertEquals(0, positionOne.x()),
                 () -> assertEquals(0, positionOne.y()),
                 () -> assertEquals(CompassDirection.N, positionOne.facing()),
@@ -56,7 +56,7 @@ class PositionParserTest {
 
     @Test
     @DisplayName("Returns a false boolean and Position object with co-ordinates [-1,-1, N] with a invalid string input")
-    void testPlateauSizeParserWithInvalidInput(){
+    void testPositionSizeParserWithInvalidInput(){
         // Arrange
         PositionParser positionParser = new PositionParser();
         String inputOne = "1010 N";
@@ -68,7 +68,7 @@ class PositionParserTest {
         Position positionTwo = positionParser.positionParser(inputTwo);
 
         // Assert
-        assertAll("Confirms the PlateauSizeParser returns a returns PlateauSize object",
+        assertAll("Confirms the PositionSizeParser returns a returns PositionSize object",
                 () -> assertEquals(-1, positionOne.x()),
                 () -> assertEquals(-1, positionOne.y()),
                 () -> assertEquals(CompassDirection.N, positionOne.facing()),
@@ -87,7 +87,7 @@ class PositionParserTest {
 
     @Test
     @DisplayName("Returns a false boolean and Position object with co-ordinates [-1,-1, N] with a null input")
-    void testPlateauSizeParserWithNullInput(){
+    void testPositionSizeParserWithNullInput(){
         // Arrange
         PositionParser positionParser = new PositionParser();
 
@@ -95,7 +95,7 @@ class PositionParserTest {
         Position positionOne = positionParser.positionParser(null);
 
         // Assert
-        assertAll("Confirms the PlateauSizeParser returns a returns PlateauSize object",
+        assertAll("Confirms the PositionSizeParser returns a returns PositionSize object",
                 () -> assertEquals(-1, positionOne.x()),
                 () -> assertEquals(-1, positionOne.y()),
                 () -> assertEquals(CompassDirection.N, positionOne.facing()),
