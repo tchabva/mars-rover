@@ -6,6 +6,7 @@ import org.northcoders.inputlayer.Position;
 import org.northcoders.inputlayer.inputparsers.InstructionParser;
 import org.northcoders.inputlayer.inputparsers.PlateauSizeParser;
 import org.northcoders.inputlayer.inputparsers.PositionParser;
+import org.northcoders.logiclayer.Plateau;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,16 +54,36 @@ public class UserInterface {
         System.out.println(plateauSize.toString());
     }
 
+    // This method gets the position coordinates and direction from the user input
+    // It checks whether the input is a valid coordinate format and if the position is within the plateau
     public void getPositionInput(){
+        boolean isPositionOnPlateau = false;
         System.out.print(
                 """
                         
                         Choose where you want to deploy your Rover!
                         Input the X and Y coordinates that are within on Plateau and the direction your Rover is facing.
                         The possible directions are the Compass directions: N = North, E = East, S = South and W = West
-                        Please use the following format "0 0 N" or "1 3 E":"""
+                        Please use the following format "0 0 N" or "1 3 E":
+                        """
         );
 
+        while (!positionParser.isValidPosition() || !isPositionOnPlateau){
+            String inputString = scanner.nextLine();
+            Position prospectivePosition = positionParser.positionParser(inputString);
+            Plateau plateau = new Plateau(plateauSize);
+
+            if (prospectivePosition != null){
+                isPositionOnPlateau = plateau.isPositionValid(prospectivePosition.x(), prospectivePosition.y());
+
+                if (isPositionOnPlateau && positionParser.isValidPosition()){
+                    this.positions.add(prospectivePosition);
+                }else if (!isPositionOnPlateau && positionParser.isValidPosition()){
+                    System.out.println("Please enter coordinates on the plateau!:");
+                }
+            }
+        }
+        System.out.println(positions.getLast());
     }
     // TODO: Diagram and how I want the Mars Rover project to work
 }
