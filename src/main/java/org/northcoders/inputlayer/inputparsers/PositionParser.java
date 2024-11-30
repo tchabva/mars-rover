@@ -19,11 +19,11 @@ public class PositionParser {
         if (input == null){
             System.out.println("Please enter a valid Position input!");
             isValidPosition = false;
-            return new Position(-1,-1, CompassDirection.N);
+            return null;
         } else if (!isValidString.test(input)) {
             System.out.println("Please enter a valid Position input!");
             isValidPosition = false;
-            return new Position(-1,-1, CompassDirection.N);
+            return null;
         } else {
             String[] inputArray = input.split(" ");
             try {
@@ -35,7 +35,7 @@ public class PositionParser {
             } catch (IllegalArgumentException e){
                 System.out.println("Please enter a valid Position input!");
                 isValidPosition = false;
-                return new Position(-1,-1, CompassDirection.N);
+                return null;
             }
         }
     }
