@@ -21,7 +21,7 @@ public class UserInterface {
     private final InstructionParser instructionParser;
     private PlateauSize plateauSize;
     private final List<Position> positions = new ArrayList<>();
-    private final List<Queue<Instruction>> instructions = new ArrayList<>();
+    private final List<Queue<Instruction>> instructionsQueueList = new ArrayList<>();
 
     public UserInterface() {
         this.scanner = new Scanner(System.in);
@@ -85,5 +85,29 @@ public class UserInterface {
         }
         System.out.println(positions.getLast());
     }
-    // TODO: Diagram and how I want the Mars Rover project to work
+
+    // This method takes in the instruction input for the previously inputted rover instruction
+    public void getInstructionInput(){
+               System.out.print(
+                """
+                        
+                        Now it is time to choose how you want to move your Rover!
+                        The the three possible instructions are:
+                        R = turn your Rover by one compass direction to the right e.g If your is facing North, it will now face West.
+                        L = turn your Rover by one compass direction to the left e.g. If your Rover's facing North, it will now face East.
+                        M = move your Rover one position in the direction it is facing.
+                        Please enter your instructions in the following format "RMLRM":
+                        """
+        );
+
+        while (!instructionParser.isValidInstruction()){
+            String inputString = scanner.nextLine();
+            Queue<Instruction> instructions = instructionParser.parseInstructions(inputString);
+
+            if (instructionParser.isValidInstruction()){
+                instructionsQueueList.add(instructions);
+            }
+        }
+        System.out.println(instructionsQueueList.getLast());
+    }
 }
