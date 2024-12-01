@@ -2,8 +2,7 @@ package org.northcoders.inputlayer.inputparsers;
 
 import org.northcoders.inputlayer.CompassDirection;
 import org.northcoders.inputlayer.Position;
-
-import javax.naming.InsufficientResourcesException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
@@ -43,13 +42,15 @@ public class PositionParser {
         return matcher.find();
     };
 
-    public Boolean isPositionFree(List<Position> positions, Position newPosition){
+    public Boolean isLandingPositionFree(List<Position> positions, Position newPosition){
+        List<Position> positionList = new ArrayList<>(positions);
         if(newPosition == null){
             return false;
-        } else {
-            for (Position position : positions){
-                if(position.x() == newPosition.x() && position.y() == newPosition.y()){
-                    System.out.println("There is already a Rover in these coordinates!\nPlease enter new coordinates");
+        }
+
+        if (!positionList.isEmpty()){
+            for (Position position : positionList){
+                if (newPosition.x() == position.x() && newPosition.y() == position.y()){
                     return false;
                 }
             }
