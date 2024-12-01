@@ -31,7 +31,7 @@ public class Plateau {
         roverCheckList.remove(rover);
         if (!roverCheckList.isEmpty()){
             for (Rover otherRover : roverCheckList){
-                return otherRover.getPosition().x() != nextPosition.x() || otherRover.getPosition().y() != nextPosition.y();
+                return nextPosition.x() != otherRover.getPosition().x() || nextPosition.y() != otherRover.getPosition().y();
             }
         }
         return true;
