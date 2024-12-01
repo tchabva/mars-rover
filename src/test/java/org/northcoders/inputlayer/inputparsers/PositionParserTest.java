@@ -1,6 +1,5 @@
 package org.northcoders.inputlayer.inputparsers;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.northcoders.inputlayer.CompassDirection;
@@ -93,8 +92,8 @@ class PositionParserTest {
     }
 
     @Test
-    @DisplayName("Returns a true boolean and when the new position does match any of the Positions in the position list")
-    void testPositionIsFree(){
+    @DisplayName("Returns a true boolean and when the newPosition does match any of the Positions in the positionList")
+    void testIsLandingPositionIsFree(){
         // Arrange
         PositionParser positionParser = new PositionParser();
         List<Position> positionList = List.of(
@@ -106,15 +105,15 @@ class PositionParserTest {
         Position newPosition = new Position(0, 0, CompassDirection.N);
 
         // Act
-       boolean result = positionParser.isPositionFree(positionList, newPosition);
+       boolean result = positionParser.isLandingPositionFree(positionList, newPosition);
 
         // Assert
         assertTrue(result);
     }
 
     @Test
-    @DisplayName("Returns a false boolean and when the new position is equal to a Position in the position list")
-    void testPositionIsFreeForFalseCondition(){
+    @DisplayName("Returns a false boolean and when the newPosition is equal to a Position in the positionList")
+    void testIsLandingPositionIsFreeForFalseCondition(){
         // Arrange
         PositionParser positionParser = new PositionParser();
         List<Position> positionList = List.of(
@@ -126,15 +125,15 @@ class PositionParserTest {
         Position newPosition = new Position(10, 10, CompassDirection.N);
 
         // Act
-        boolean result = positionParser.isPositionFree(positionList, newPosition);
+        boolean result = positionParser.isLandingPositionFree(positionList, newPosition);
 
         // Assert
         assertFalse(result);
     }
 
     @Test
-    @DisplayName("Returns a false boolean and when input is null")
-    void testPositionIsFreeNullInput(){
+    @DisplayName("Returns a false boolean and when newPosition input is null")
+    void testIsLandingPositionIsFreeNullInput(){
         // Arrange
         PositionParser positionParser = new PositionParser();
         List<Position> positionList = List.of(
@@ -145,7 +144,7 @@ class PositionParserTest {
         );
 
         // Act
-        boolean result = positionParser.isPositionFree(positionList, null);
+        boolean result = positionParser.isLandingPositionFree(positionList, null);
 
         // Assert
         assertFalse(result);
