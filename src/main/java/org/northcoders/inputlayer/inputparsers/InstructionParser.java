@@ -34,9 +34,9 @@ public class InstructionParser {
                     return null;
                 }
             }
+            isValidInstruction = true;
+            return instructions;
         }
-        isValidInstruction = true;
-        return instructions;
     }
 
     public boolean isValidInstruction() {
