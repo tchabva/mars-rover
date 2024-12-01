@@ -48,8 +48,17 @@ public class PositionParser {
     };
 
 
-    public boolean isPositionFree(List<Position> positions, Position newPosition){
-
+    public Boolean isPositionFree(List<Position> positions, Position newPosition){
+        if(newPosition == null){
+            return false;
+        } else {
+            for (Position position : positions){
+                if(position.x() == newPosition.x() && position.y() == newPosition.y()){
+                    System.out.println("There is already a Rover in these coordinates!\nPlease enter new coordinates");
+                    return false;
+                }
+            }
+        }
         return true;
     }
 
