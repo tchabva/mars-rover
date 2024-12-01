@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.northcoders.inputlayer.CompassDirection;
 import org.northcoders.inputlayer.Position;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PositionParserTest {
@@ -55,7 +57,7 @@ class PositionParserTest {
     }
 
     @Test
-    @DisplayName("Returns a false boolean and Position object with co-ordinates [-1,-1, N] with a invalid string input")
+    @DisplayName("Returns a false boolean and null for a invalid string input")
     void testPositionSizeParserWithInvalidInput(){
         // Arrange
         PositionParser positionParser = new PositionParser();
@@ -66,21 +68,13 @@ class PositionParserTest {
         // Act
         Position positionOne = positionParser.positionParser(inputOne);
         Position positionTwo = positionParser.positionParser(inputTwo);
+        Position positionThree = positionParser.positionParser(inputThree);
 
         // Assert
-        assertAll("Confirms the PositionSizeParser returns a returns PositionSize object",
-                () -> assertEquals(-1, positionOne.x()),
-                () -> assertEquals(-1, positionOne.y()),
-                () -> assertEquals(CompassDirection.N, positionOne.facing()),
-                () -> assertFalse(positionParser.isValidPosition()),
-                () -> assertEquals(-1, positionTwo.x()),
-                () -> assertEquals(-1, positionTwo.y()),
-                () -> assertEquals(CompassDirection.N, positionTwo.facing()),
-                () -> assertFalse(positionParser.isValidPosition()),
-                () -> assertEquals(-1, positionTwo.x()),
-                () -> assertEquals(-1, positionTwo.y()),
-                () -> assertEquals(CompassDirection.N, positionTwo.facing()),
-                () -> assertFalse(positionParser.isValidPosition())
+        assertAll("Confirms the PositionSizeParser returns a returns null",
+                () -> assertNull(positionOne),
+                () -> assertNull(positionTwo),
+                () -> assertNull(positionThree)
 
         );
     }
@@ -95,12 +89,65 @@ class PositionParserTest {
         Position positionOne = positionParser.positionParser(null);
 
         // Assert
-        assertAll("Confirms the PositionSizeParser returns a returns PositionSize object",
-                () -> assertEquals(-1, positionOne.x()),
-                () -> assertEquals(-1, positionOne.y()),
-                () -> assertEquals(CompassDirection.N, positionOne.facing()),
-                () -> assertFalse(positionParser.isValidPosition())
-        );
+        assertNull(positionOne);
     }
 
+    @Test
+    @DisplayName("Returns a true boolean and when the new position does match any of the Positions in the position list")
+    void testPositionIsFree(){
+        // Arrange
+        PositionParser positionParser = new PositionParser();
+        List<Position> positionList = List.of(
+                new Position(10, 10, CompassDirection.E),
+                new Position(5, 5, CompassDirection.N),
+                new Position(1, 1, CompassDirection.S),
+                new Position(2, 2, CompassDirection.W)
+        );
+        Position newPosition = new Position(0, 0, CompassDirection.N);
+
+        // Act
+       boolean result = positionParser.isPositionFree(positionList, newPosition);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    @DisplayName("Returns a false boolean and when the new position is equal to a Position in the position list")
+    void testPositionIsFreeForFalseCondition(){
+        // Arrange
+        PositionParser positionParser = new PositionParser();
+        List<Position> positionList = List.of(
+                new Position(10, 10, CompassDirection.E),
+                new Position(5, 5, CompassDirection.N),
+                new Position(1, 1, CompassDirection.S),
+                new Position(2, 2, CompassDirection.W)
+        );
+        Position newPosition = new Position(10, 10, CompassDirection.N);
+
+        // Act
+        boolean result = positionParser.isPositionFree(positionList, newPosition);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    @DisplayName("Returns a false boolean and when input is null")
+    void testPositionIsFreeNullInput(){
+        // Arrange
+        PositionParser positionParser = new PositionParser();
+        List<Position> positionList = List.of(
+                new Position(10, 10, CompassDirection.E),
+                new Position(5, 5, CompassDirection.N),
+                new Position(1, 1, CompassDirection.S),
+                new Position(2, 2, CompassDirection.W)
+        );
+
+        // Act
+        boolean result = positionParser.isPositionFree(positionList, null);
+
+        // Assert
+        assertFalse(result);
+    }
 }
