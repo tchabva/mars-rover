@@ -7,7 +7,6 @@ import org.northcoders.inputlayer.inputparsers.InstructionParser;
 import org.northcoders.inputlayer.inputparsers.PlateauSizeParser;
 import org.northcoders.inputlayer.inputparsers.PositionParser;
 import org.northcoders.logiclayer.Plateau;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
@@ -59,6 +58,7 @@ public class UserInterface {
     // It checks whether the input is a valid coordinate format and if the position is within the plateau
     public void getPositionInput(){
         boolean isPositionOnPlateau = false;
+        boolean isPositionEmpty = true;
         System.out.print(
                 """
                         
@@ -74,10 +74,15 @@ public class UserInterface {
             Position prospectivePosition = positionParser.positionParser(inputString);
             Plateau plateau = new Plateau(plateauSize);
 
+
+            isPositionEmpty = positionParser.isLandingPositionFree(positions, prospectivePosition);
             if (prospectivePosition != null){
                 isPositionOnPlateau = plateau.isPositionValid(prospectivePosition.x(), prospectivePosition.y());
+                if (!positions.isEmpty()){
 
-                if (isPositionOnPlateau && positionParser.isValidPosition()){
+                }
+
+                if (isPositionOnPlateau && positionParser.isValidPosition() && isPositionEmpty){
                     this.positions.add(prospectivePosition);
                 }else if (!isPositionOnPlateau && positionParser.isValidPosition()){
                     System.out.println("Please enter coordinates on the plateau!:");
@@ -89,6 +94,7 @@ public class UserInterface {
 
     // This method takes in the instruction input for the previously inputted rover instruction
     public void getInstructionInput(){
+        boolean isValidInstruction = false;
                System.out.print(
                 """
                         
@@ -101,20 +107,20 @@ public class UserInterface {
                         """
         );
 
-        while (!instructionParser.isValidInstruction()){
+        while (!isValidInstruction){
             String inputString = scanner.nextLine();
             Queue<Instruction> instructions = instructionParser.parseInstructions(inputString);
 
             if (instructionParser.isValidInstruction()){
                 instructionsQueueList.add(instructions);
+                isValidInstruction = instructionParser.isValidInstruction();
             }
         }
         System.out.println(instructionsQueueList.getLast());
     }
 
-
     public boolean addAnotherRover(){
-        String userInput = scanner.nextLine();
+
         System.out.print(
                 """
                         
@@ -122,15 +128,8 @@ public class UserInterface {
                         If so, please input "Y" or "Yes", otherwise press enter to proceed:
                         """
         );
+        String userInput = scanner.nextLine();
         return userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("y");
-
-        /*
-         TODO: If I add every new rover to my temporary plateau object, I should be able confirm if the position is free
-           Might need a addAnotherRoverInputParser to process the logic for this method and I have to decide whether
-           entering a non valid input
-         */
-        //  is free.
-        // Might need anotherRover Input parser and need to decide if not answering yes will keep  you in a loop or
 
     }
 
@@ -155,7 +154,17 @@ public class UserInterface {
     };
 
     public void getPositionAndInstructions(){
+        /*
+        TODO: Add logic for confirming that Rover is not in the same place as another rover
+        LOOK INTO CONSOLE TERMINAL BUG FOR Instruction
+        THERE ARE BUGS TO DEAL WITH!!!
+         */
+
         getPositionInput();
         getInstructionInput();
+
+//        if(addAnotherRover()){
+//            getInstructionInput();
+//        }
     }
 }
