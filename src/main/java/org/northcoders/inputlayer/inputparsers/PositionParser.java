@@ -12,10 +12,6 @@ import java.util.regex.Pattern;
 public class PositionParser {
     private boolean isValidPosition;
 
-    /*
-    TODO: Takes in an input and returns a Position object.
-     */
-
     public Position positionParser(String input){
         if (input == null){
             System.out.println("Please enter a valid Position input!");
@@ -46,7 +42,6 @@ public class PositionParser {
         Matcher matcher = pattern.matcher(input);
         return matcher.find();
     };
-
 
     public Boolean isPositionFree(List<Position> positions, Position newPosition){
         if(newPosition == null){
