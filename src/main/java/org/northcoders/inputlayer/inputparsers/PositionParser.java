@@ -43,13 +43,12 @@ public class PositionParser {
     };
 
     public Boolean isLandingPositionFree(List<Position> positions, Position newPosition){
-        List<Position> positionList = new ArrayList<>(positions);
         if(newPosition == null){
             return false;
         }
 
-        if (!positionList.isEmpty()){
-            for (Position position : positionList){
+        if (!positions.isEmpty()){
+            for (Position position : positions){
                 if (newPosition.x() == position.x() && newPosition.y() == position.y()){
                     return false;
                 }
