@@ -77,10 +77,6 @@ public class UserInterface {
             isPositionEmpty = positionParser.isLandingPositionFree(positions, prospectivePosition);
             if (prospectivePosition != null){
                 isPositionOnPlateau = plateau.isPositionValid(prospectivePosition.x(), prospectivePosition.y());
-//                if (!positions.isEmpty()){
-//
-//                }
-
                 if (isPositionOnPlateau && positionParser.isValidPosition() && isPositionEmpty){
                     this.positions.add(prospectivePosition);
                 }else if (!isPositionOnPlateau && positionParser.isValidPosition()){
@@ -134,18 +130,11 @@ public class UserInterface {
     }
 
     public void getPositionAndInstructions(){
-        /*
-        TODO: Add logic for confirming that Rover is not in the same place as another rover
-        LOOK INTO CONSOLE TERMINAL BUG FOR Instruction
-        THERE ARE BUGS TO DEAL WITH!!!
-         */
-
         do {
             getPositionInput();
             getInstructionInput();
             addAnotherRover();
         } while (addAnotherRover);
-
     }
 
     public PlateauSize getPlateauSize() {
