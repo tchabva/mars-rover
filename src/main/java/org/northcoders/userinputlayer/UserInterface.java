@@ -24,7 +24,6 @@ public class UserInterface {
 
     public UserInterface() {
         this.scanner = new Scanner(System.in);
-
         this.plateauSizeParser = new PlateauSizeParser();
         this.positionParser = new PositionParser();
         this.instructionParser = new InstructionParser();
@@ -59,7 +58,7 @@ public class UserInterface {
     // It checks whether the input is a valid coordinate format and if the position is within the plateau
     private void getPositionInput(){
         boolean isPositionOnPlateau = false;
-        boolean isPositionEmpty;
+        boolean isPositionEmpty = false;
         System.out.print(
                 """
                         
@@ -70,7 +69,7 @@ public class UserInterface {
                         """
         );
 
-        while (!positionParser.isValidPosition() || !isPositionOnPlateau){
+        while (!positionParser.isValidPosition() || !isPositionOnPlateau || !isPositionEmpty){
             String inputString = scanner.nextLine();
             Position prospectivePosition = positionParser.positionParser(inputString);
             Plateau plateau = new Plateau(plateauSize);
@@ -86,6 +85,8 @@ public class UserInterface {
                     this.positions.add(prospectivePosition);
                 }else if (!isPositionOnPlateau && positionParser.isValidPosition()){
                     System.out.println("Please enter coordinates on the plateau!:");
+                } else if (!isPositionEmpty){
+                    System.out.println("There is already a Rover here, please enter different coordinates within the plateau!:");
                 }
             }
         }
@@ -120,7 +121,6 @@ public class UserInterface {
     }
 
     private void addAnotherRover(){
-
         System.out.print(
                 """
                         
@@ -131,14 +131,6 @@ public class UserInterface {
 
         String userInput = scanner.nextLine().toUpperCase();
         addAnotherRover = userInput.equals("YES") || userInput.equals("Y");
-
-        /*
-         TODO: If I add every new rover to my temporary plateau object, I should be able confirm if the position is free
-           Might need a addAnotherRoverInputParser to process the logic for this method and I have to decide whether
-           entering a non valid input
-         */
-        //  is free.
-        // Might need anotherRover Input parser and need to decide if not answering yes will keep  you in a loop or
     }
 
     public void getPositionAndInstructions(){
