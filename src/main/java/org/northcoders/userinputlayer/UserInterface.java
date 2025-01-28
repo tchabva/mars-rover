@@ -50,7 +50,6 @@ public class UserInterface {
             this.plateauSize = plateauSizeParser.parsePlateauSize(inputString);
         }
 
-        // TODO plateau size toString method override
         System.out.println(plateauSize.toString());
     }
 
