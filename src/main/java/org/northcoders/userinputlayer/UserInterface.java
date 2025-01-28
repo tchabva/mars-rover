@@ -11,11 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
-import java.util.function.Supplier;
 
 public class UserInterface {
-    private Scanner scanner;
-    private String nextLine;
+    private final Scanner scanner;
     private final PlateauSizeParser plateauSizeParser;
     private final PositionParser positionParser;
     private final InstructionParser instructionParser;
@@ -58,7 +56,7 @@ public class UserInterface {
 
     // This method gets the position coordinates and direction from the user input
     // It checks whether the input is a valid coordinate format and if the position is within the plateau
-    public void getPositionInput(){
+    private void getPositionInput(){
         boolean isPositionOnPlateau = false;
         boolean isPositionEmpty;
         System.out.print(
@@ -76,13 +74,12 @@ public class UserInterface {
             Position prospectivePosition = positionParser.positionParser(inputString);
             Plateau plateau = new Plateau(plateauSize);
 
-
             isPositionEmpty = positionParser.isLandingPositionFree(positions, prospectivePosition);
             if (prospectivePosition != null){
                 isPositionOnPlateau = plateau.isPositionValid(prospectivePosition.x(), prospectivePosition.y());
-                if (!positions.isEmpty()){
-
-                }
+//                if (!positions.isEmpty()){
+//
+//                }
 
                 if (isPositionOnPlateau && positionParser.isValidPosition() && isPositionEmpty){
                     this.positions.add(prospectivePosition);
@@ -95,7 +92,7 @@ public class UserInterface {
     }
 
     // This method takes in the instruction input for the previously inputted rover instruction
-    public void getInstructionInput(){
+    private void getInstructionInput(){
         boolean isValidInstruction = false;
                System.out.print(
                 """
@@ -131,20 +128,7 @@ public class UserInterface {
                         """
         );
         String userInput = scanner.nextLine();
-        return userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("y");
-
-    }
-
-    public Supplier<Boolean> addAnotherRover = () ->{
-        String userInput = scanner.nextLine();
-        System.out.print(
-                """
-                        
-                        Do you want to add another Rover to your plateau?
-                        If so, please input "Y" or "Yes", otherwise press enter to proceed:
-                        """
-        );
-        return userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("y");
+        return userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("Y") || userInput.equalsIgnoreCase("y");
 
         /*
          TODO: If I add every new rover to my temporary plateau object, I should be able confirm if the position is free
@@ -153,7 +137,7 @@ public class UserInterface {
          */
         //  is free.
         // Might need anotherRover Input parser and need to decide if not answering yes will keep  you in a loop or
-    };
+    }
 
     public void getPositionAndInstructions(){
         /*
