@@ -60,7 +60,7 @@ public class UserInterface {
     // It checks whether the input is a valid coordinate format and if the position is within the plateau
     public void getPositionInput(){
         boolean isPositionOnPlateau = false;
-        boolean isPositionEmpty = true;
+        boolean isPositionEmpty;
         System.out.print(
                 """
                         
@@ -168,5 +168,17 @@ public class UserInterface {
 //        if(addAnotherRover()){
 //            getInstructionInput();
 //        }
+    }
+
+    public PlateauSize getPlateauSize() {
+        return plateauSize;
+    }
+
+    public List<Position> getPositions() {
+        return positions;
+    }
+
+    public List<Queue<Instruction>> getInstructionsQueueList() {
+        return instructionsQueueList;
     }
 }
