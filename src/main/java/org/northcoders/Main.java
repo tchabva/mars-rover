@@ -7,8 +7,6 @@ public class Main {
 
         UserInterface userInterface = new UserInterface();
 
-        userInterface.greeting();
-
         userInterface.getPlateauInput();
 
         userInterface.getPositionAndInstructions();

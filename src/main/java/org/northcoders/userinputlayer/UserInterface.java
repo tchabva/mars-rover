@@ -29,6 +29,8 @@ public class UserInterface {
         this.plateauSizeParser = new PlateauSizeParser();
         this.positionParser = new PositionParser();
         this.instructionParser = new InstructionParser();
+
+        greeting();
     }
 
     // Greeting to the user
