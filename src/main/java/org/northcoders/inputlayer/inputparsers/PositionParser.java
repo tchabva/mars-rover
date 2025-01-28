@@ -2,18 +2,14 @@ package org.northcoders.inputlayer.inputparsers;
 
 import org.northcoders.inputlayer.CompassDirection;
 import org.northcoders.inputlayer.Position;
-
-import javax.naming.InsufficientResourcesException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PositionParser {
     private boolean isValidPosition;
-
-    /*
-    TODO: Takes in an input and returns a Position object.
-     */
 
     public Position positionParser(String input){
         if (input == null){
@@ -45,6 +41,21 @@ public class PositionParser {
         Matcher matcher = pattern.matcher(input);
         return matcher.find();
     };
+
+    public Boolean isLandingPositionFree(List<Position> positions, Position newPosition){
+        if(newPosition == null){
+            return false;
+        }
+
+        if (!positions.isEmpty()){
+            for (Position position : positions){
+                if (newPosition.x() == position.x() && newPosition.y() == position.y()){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     public boolean isValidPosition() {
         return isValidPosition;

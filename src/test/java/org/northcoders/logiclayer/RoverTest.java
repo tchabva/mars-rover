@@ -6,8 +6,6 @@ import org.northcoders.inputlayer.CompassDirection;
 import org.northcoders.inputlayer.Instruction;
 import org.northcoders.inputlayer.Position;
 
-import java.awt.geom.Point2D;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class RoverTest {
@@ -123,7 +121,7 @@ class RoverTest {
     }
 
     @Test
-    @DisplayName("Returns the correct Postions X given input")
+    @DisplayName("Returns the correct Positions X given input")
     void testPositionsX(){
         // Arrange
         Rover rover = new Rover(new Position(3,3, CompassDirection.E));
@@ -138,7 +136,7 @@ class RoverTest {
     }
 
     @Test
-    @DisplayName("Returns the correct Postions Y given input")
+    @DisplayName("Returns the correct Positions Y given input")
     void testPositionsY(){
         // Arrange
         Rover rover = new Rover(new Position(3,3, CompassDirection.N));
@@ -233,26 +231,22 @@ class RoverTest {
                 () -> assertEquals(4, positionMoveRoverTwo.y()),
                 () -> assertEquals(CompassDirection.N, positionResultRight.facing())
         );
-
     }
 
     @Test
     @DisplayName("Returns the current position when given null input")
     void testNextPositionWithNullInput(){
         // Arrange
-        Rover rover = new Rover(new Position(3,3, CompassDirection.W));
-        Rover roverTwo = new Rover(new Position(3,3, CompassDirection.N));
+        Rover rover = new Rover(new Position(1,3, CompassDirection.W));
 
         // Act
         Position positionResult = rover.nextPosition(null);
 
         // Assert
         assertAll("Returns correction results for the nextPosition method",
-                () -> assertEquals(3, rover.getPosition().x()),
-                () -> assertEquals(3, rover.getPosition().y()),
-                () -> assertEquals(CompassDirection.W ,  rover.getPosition().facing())
+                () -> assertEquals(1, positionResult.x()),
+                () -> assertEquals(3, positionResult.y()),
+                () -> assertEquals(CompassDirection.W , positionResult.facing())
         );
-
     }
-
 }
