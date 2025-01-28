@@ -20,6 +20,7 @@ public class UserInterface {
     private PlateauSize plateauSize;
     private final List<Position> positions = new ArrayList<>();
     private final List<Queue<Instruction>> instructionsQueueList = new ArrayList<>();
+    private Boolean addAnotherRover = false;
 
     public UserInterface() {
         this.scanner = new Scanner(System.in);
@@ -118,7 +119,7 @@ public class UserInterface {
         System.out.println(instructionsQueueList.getLast());
     }
 
-    public boolean addAnotherRover(){
+    private void addAnotherRover(){
 
         System.out.print(
                 """
@@ -127,8 +128,9 @@ public class UserInterface {
                         If so, please input "Y" or "Yes", otherwise press enter to proceed:
                         """
         );
-        String userInput = scanner.nextLine();
-        return userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("Y") || userInput.equalsIgnoreCase("y");
+
+        String userInput = scanner.nextLine().toUpperCase();
+        addAnotherRover = userInput.equals("YES") || userInput.equals("Y");
 
         /*
          TODO: If I add every new rover to my temporary plateau object, I should be able confirm if the position is free
@@ -146,12 +148,12 @@ public class UserInterface {
         THERE ARE BUGS TO DEAL WITH!!!
          */
 
-        getPositionInput();
-        getInstructionInput();
+        do {
+            getPositionInput();
+            getInstructionInput();
+            addAnotherRover();
+        } while (addAnotherRover);
 
-//        if(addAnotherRover()){
-//            getInstructionInput();
-//        }
     }
 
     public PlateauSize getPlateauSize() {
