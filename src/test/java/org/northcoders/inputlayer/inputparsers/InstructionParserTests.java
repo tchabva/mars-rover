@@ -123,6 +123,4 @@ class InstructionParserTests {
         // Assert
         assertNull(result);
     }
-
-
 }

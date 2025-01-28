@@ -28,7 +28,6 @@ class PlateauSizeParserTest {
                 () -> assertEquals(5, plateauSizeTwo.x()),
                 () -> assertEquals(11, plateauSizeTwo.y()),
                 () -> assertTrue(plateauSizeParser.isValidPlateauDimensions())
-
         );
     }
 
