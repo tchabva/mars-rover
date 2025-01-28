@@ -237,17 +237,16 @@ class RoverTest {
     @DisplayName("Returns the current position when given null input")
     void testNextPositionWithNullInput(){
         // Arrange
-        Rover rover = new Rover(new Position(3,3, CompassDirection.W));
-        Rover roverTwo = new Rover(new Position(3,3, CompassDirection.N));
+        Rover rover = new Rover(new Position(1,3, CompassDirection.W));
 
         // Act
         Position positionResult = rover.nextPosition(null);
 
         // Assert
         assertAll("Returns correction results for the nextPosition method",
-                () -> assertEquals(3, rover.getPosition().x()),
-                () -> assertEquals(3, rover.getPosition().y()),
-                () -> assertEquals(CompassDirection.W ,  rover.getPosition().facing())
+                () -> assertEquals(1, positionResult.x()),
+                () -> assertEquals(3, positionResult.y()),
+                () -> assertEquals(CompassDirection.W , positionResult.facing())
         );
     }
 }
