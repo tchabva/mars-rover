@@ -29,14 +29,17 @@ public class UserInterface {
         this.instructionParser = new InstructionParser();
 
         greeting();
+        getPlateauInput();
+        getPositionAndInstructions();
     }
 
     // Greeting to the user
-    public void greeting(){
+    private void greeting(){
         System.out.println("Welcome to Mars!\nGet ready to deploy...");
     }
 
-    public void getPlateauInput(){
+    // Prompts the user to input the size of the Plateau
+    private void getPlateauInput(){
         System.out.print(
                 """
                         Choose the size of the plateau you want to explore
@@ -53,8 +56,10 @@ public class UserInterface {
         System.out.println(plateauSize.toString());
     }
 
-    // This method gets the position coordinates and direction from the user input
-    // It checks whether the input is a valid coordinate format and if the position is within the plateau
+    /*
+     This method gets the position coordinates and direction from the user input
+     It checks whether the input is a valid coordinate format and if the position is within the plateau
+     */
     private void getPositionInput(){
         boolean isPositionOnPlateau = false;
         boolean isPositionEmpty = false;
@@ -115,6 +120,7 @@ public class UserInterface {
         System.out.println(instructionsQueueList.getLast());
     }
 
+    // This method checks whether the user would like to continue adding Rovers
     private void addAnotherRover(){
         System.out.print(
                 """
@@ -128,7 +134,8 @@ public class UserInterface {
         addAnotherRover = userInput.equals("YES") || userInput.equals("Y");
     }
 
-    public void getPositionAndInstructions(){
+    // Will continue to prompt User for more Rovers if addAnotherRover is true
+    private void getPositionAndInstructions(){
         do {
             getPositionInput();
             getInstructionInput();

@@ -8,10 +8,6 @@ public class Main {
 
         UserInterface userInterface = new UserInterface();
 
-        userInterface.getPlateauInput();
-
-        userInterface.getPositionAndInstructions();
-
         MissionControl missionControl = new MissionControl(
                 userInterface.getPlateauSize(),
                 userInterface.getInstructionsQueueList(),
