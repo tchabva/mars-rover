@@ -71,21 +71,15 @@ public class Rover {
 
             if (compassDirection == null){
                 System.out.println("System Error!");
-            };
+            }
             return compassDirection;
         }
     };
 
-    // TODO: Look into the Math.max() method.
-
     // Returns the nextPosition of X that is equal to or greater than 0
     private final BiFunction<Integer, CompassDirection, Integer> nextPositionX = (posX, direction) -> {
         if (direction.equals(CompassDirection.W)){
-            if((posX - 1) >= 0){
-                return posX - 1;
-            }else {
-                return 0;
-            }
+            return Math.max((posX - 1), 0); // .max returns the larger number of two arguments
         }else {
             return posX + 1;
         }
@@ -94,11 +88,7 @@ public class Rover {
     // Returns the nextPosition of Y that is equal to or greater than 0
     private final BiFunction<Integer, CompassDirection, Integer> nextPositionY = (posY, direction) -> {
         if (direction.equals(CompassDirection.S)){
-            if((posY - 1) >= 0){
-                return posY - 1;
-            }else {
-                return 0;
-            }
+            return Math.max((posY - 1), 0); // .max returns the larger number of two arguments
         }else {
             return posY + 1;
         }
