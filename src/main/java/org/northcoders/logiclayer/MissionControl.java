@@ -61,6 +61,18 @@ public class MissionControl {
         }
     }
 
+    // Moves the Rovers in accordance with its Instructions and outputs the result
+    public void moveRovers(){
+        System.out.println("\nThe initial position(s) of your Rovers");
+        printRoverPosition();
+
+        System.out.println("\nMoving the Rovers...");
+        moveRoverPosition();
+
+        System.out.println("\nThe final position(s) of your Rovers");
+        printRoverPosition();
+    }
+
     public Plateau getPlateau() {
         return plateau;
     }

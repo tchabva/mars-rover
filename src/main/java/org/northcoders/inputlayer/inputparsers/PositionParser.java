@@ -2,7 +2,6 @@ package org.northcoders.inputlayer.inputparsers;
 
 import org.northcoders.inputlayer.CompassDirection;
 import org.northcoders.inputlayer.Position;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
@@ -37,7 +36,7 @@ public class PositionParser {
     }
 
     private final Predicate<String> isValidString = input ->{
-        Pattern pattern = Pattern.compile("(\\d+) (\\d+) [NWSE]{1}", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("(\\d+) (\\d+) [NWSE]", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(input);
         return matcher.find();
     };

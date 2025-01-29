@@ -18,7 +18,7 @@ public class InstructionParser {
             System.out.println("Please enter a valid Instruction!");
             isValidInstruction = false;
             return null;
-        }else if (input.equals("")){
+        }else if (input.isBlank()){
             System.out.println("No instructions submitted!");
             isValidInstruction = false;
             return null;

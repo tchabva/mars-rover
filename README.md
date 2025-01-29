@@ -69,14 +69,14 @@ Get ready to deploy...
 Choose the size of the plateau you want to explore
 Input the length and the width of the area in the following format "10 10" or "4 4":
 5 5
-You have created a plateau with dimensions: 5 5
+You have created a plateau with dimensions: X = 5,  Y = 5
 
 Choose where you want to deploy your Rover!
 Input the X and Y coordinates that are within on Plateau and the direction your Rover is facing.
 The possible directions are the Compass directions: N = North, E = East, S = South and W = West
 Please use the following format "0 0 N" or "1 3 E":
 1 2 N
-Position: (1, 2) Direction: NORTH
+Position: (1, 2) Direction: North
 
 Now it is time to choose how you want to move your Rover!
 The the three possible instructions are:

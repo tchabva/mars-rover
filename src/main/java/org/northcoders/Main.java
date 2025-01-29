@@ -14,13 +14,6 @@ public class Main {
                 userInterface.getPositions()
         );
 
-        System.out.println("\nThe initial position(s) of your Rovers");
-        missionControl.printRoverPosition();
-
-        System.out.println("\nMoving the Rovers...");
-        missionControl.moveRoverPosition();
-
-        System.out.println("\nThe final position(s) of your Rovers");
-        missionControl.printRoverPosition();
+        missionControl.moveRovers();
     }
 }

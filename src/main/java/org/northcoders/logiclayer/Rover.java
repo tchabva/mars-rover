@@ -21,6 +21,7 @@ public class Rover {
         this.position = position;
     }
 
+    // Calculates the next position of the Rover given a single Instruction
     public Position nextPosition(Instruction instruction){
         int x = position.x();
         int y = position.y();
@@ -45,47 +46,40 @@ public class Rover {
     }
 
     // Rotates the compass direction when given an Instruction of R/L and a CompassDirection
-    // TODO: Helper Methods and Switch statements for readability
     private final BiFunction<CompassDirection, Instruction, CompassDirection> rotateCompassDirection = (compassDirection, instruction) -> {
         try {
-            if (compassDirection.equals(CompassDirection.N) && instruction.equals(Instruction.R)){
-                return CompassDirection.E;
-            }else if (compassDirection.equals(CompassDirection.E) && instruction.equals(Instruction.R)){
-                return CompassDirection.S;
-            }else if (compassDirection.equals(CompassDirection.S) && instruction.equals(Instruction.R)) {
-                return CompassDirection.W;
-            }else if (compassDirection.equals(CompassDirection.W) && instruction.equals(Instruction.R)) {
-                return CompassDirection.N;
-            }else if (compassDirection.equals(CompassDirection.W) && instruction.equals(Instruction.L)) {
-                return CompassDirection.S;
-            }else if (compassDirection.equals(CompassDirection.S) && instruction.equals(Instruction.L)) {
-                return CompassDirection.E;
-            }else if (compassDirection.equals(CompassDirection.E) && instruction.equals(Instruction.L)) {
-                return CompassDirection.N;
-            }else if (compassDirection.equals(CompassDirection.N) && instruction.equals(Instruction.L)) {
-                return CompassDirection.W;
-            } else {
+
+            if (instruction == Instruction.M || instruction == null){
                 return compassDirection;
             }
-        } catch (NullPointerException e){
+            switch (compassDirection){
+                case N -> {
+                    return instruction == Instruction.R? CompassDirection.E : CompassDirection.W;
+                }
+                case W -> {
+                    return instruction == Instruction.R? CompassDirection.N : CompassDirection.S;
+                }
+                case S -> {
+                    return instruction == Instruction.R? CompassDirection.W : CompassDirection.E;
+                }
+                case E -> {
+                    return instruction == Instruction.R? CompassDirection.S : CompassDirection.N;
+                }
+                default -> {
+                    return compassDirection;
+                }
+            }
 
-            if (compassDirection == null){
-                System.out.println("System Error!");
-            };
-            return compassDirection;
+        } catch (NullPointerException e){
+            System.out.println("System Error!");
+            return null;
         }
     };
-
-    // TODO: Look into the Math.max() method.
 
     // Returns the nextPosition of X that is equal to or greater than 0
     private final BiFunction<Integer, CompassDirection, Integer> nextPositionX = (posX, direction) -> {
         if (direction.equals(CompassDirection.W)){
-            if((posX - 1) >= 0){
-                return posX - 1;
-            }else {
-                return 0;
-            }
+            return Math.max((posX - 1), 0); // .max returns the larger number of two arguments
         }else {
             return posX + 1;
         }
@@ -94,11 +88,7 @@ public class Rover {
     // Returns the nextPosition of Y that is equal to or greater than 0
     private final BiFunction<Integer, CompassDirection, Integer> nextPositionY = (posY, direction) -> {
         if (direction.equals(CompassDirection.S)){
-            if((posY - 1) >= 0){
-                return posY - 1;
-            }else {
-                return 0;
-            }
+            return Math.max((posY - 1), 0); // .max returns the larger number of two arguments
         }else {
             return posY + 1;
         }
