@@ -43,8 +43,16 @@ git clone https://github.com/tchabva/mars-rover.git
 - Navigate to the cloned repository
 - Select the folder and click `Select Folder`
 
+### Docker Installation
+
+1. Build the Docker image:
+```bash
+docker build -t mars-rover .
+```
+
 ## Usage
 
+### Running Locally
 1. Run the `Main` class located in `src/main/java/org/northcoders/Main.java`
 
 2. Follow the interactive prompts:
@@ -60,7 +68,12 @@ git clone https://github.com/tchabva/mars-rover.git
    - Initial positions of all rovers
    - Movement execution confirmation
    - Final positions of all rovers
-
+### Running with Docker
+The interaction is the same when running locally or in Docker. Start a container using the below command and follow the
+prompts as described above and shown below:
+```bash
+docker run -it mars-rover
+```
 ### Example Interactive Session
 ```
 Welcome to Mars!
