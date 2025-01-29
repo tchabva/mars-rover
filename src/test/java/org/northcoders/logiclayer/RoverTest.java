@@ -113,7 +113,7 @@ class RoverTest {
         CompassDirection resultThree = rover.getRotateCompassDirection().apply(null, null);
 
         // Assert
-        assertAll("Returns null for a nul for a compass direction input and instruction",
+        assertAll("Returns null for a null for a compass direction input and instruction",
                 () -> assertEquals(CompassDirection.W, resultOne),
                 () -> assertNull(resultTwo),
                 () -> assertNull(resultThree)
