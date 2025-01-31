@@ -23,25 +23,7 @@ This program allows users to:
 git clone https://github.com/tchabva/mars-rover.git
 ```
 
-2. (If required unzip file first) Open the project in your preferred IDE:
-
-### IntelliJ IDEA
-- Go to `File -> Open`
-- Navigate to the cloned repository
-- Select the root folder and click `OK`
-- Wait for the IDE to import and build the project
-
-### Eclipse
-- Go to `File -> Import`
-- Select `Existing Maven Projects`
-- Navigate to the cloned repository
-- Select the root folder and click `Finish`
-
-### VS Code
-- Open VS Code
-- Click `File -> Open Folder`
-- Navigate to the cloned repository
-- Select the folder and click `Select Folder`
+2. (If required unzip file) Open the project in your preferred IDE:
 
 ### Docker Installation
 
