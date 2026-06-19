@@ -11,12 +11,19 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PositionParserTest {
-    // TODO: look into @BeforeEach
     private PositionParser positionParser;
+    private List<Position> positionList;
 
+    // This is invoked before each test
     @BeforeEach
     void setUp() {
         positionParser = new PositionParser();
+        positionList = List.of(
+                new Position(10, 10, CompassDirection.E),
+                new Position(5, 5, CompassDirection.N),
+                new Position(1, 1, CompassDirection.S),
+                new Position(2, 2, CompassDirection.W)
+        );
     }
 
     @Test
@@ -97,12 +104,6 @@ class PositionParserTest {
     @DisplayName("Returns a true boolean and when the newPosition does match any of the Positions in the positionList")
     void testIsLandingPositionIsFree() {
         // Arrange
-        List<Position> positionList = List.of(
-                new Position(10, 10, CompassDirection.E),
-                new Position(5, 5, CompassDirection.N),
-                new Position(1, 1, CompassDirection.S),
-                new Position(2, 2, CompassDirection.W)
-        );
         Position newPosition = new Position(0, 0, CompassDirection.N);
 
         // Act
@@ -116,12 +117,6 @@ class PositionParserTest {
     @DisplayName("Returns a false boolean and when the newPosition is equal to a Position in the positionList")
     void testIsLandingPositionIsFreeForFalseCondition() {
         // Arrange
-        List<Position> positionList = List.of(
-                new Position(10, 10, CompassDirection.E),
-                new Position(5, 5, CompassDirection.N),
-                new Position(1, 1, CompassDirection.S),
-                new Position(2, 2, CompassDirection.W)
-        );
         Position newPosition = new Position(10, 10, CompassDirection.N);
 
         // Act
@@ -134,14 +129,6 @@ class PositionParserTest {
     @Test
     @DisplayName("Returns a false boolean and when newPosition input is null")
     void testIsLandingPositionIsFreeNullInput() {
-        // Arrange
-        List<Position> positionList = List.of(
-                new Position(10, 10, CompassDirection.E),
-                new Position(5, 5, CompassDirection.N),
-                new Position(1, 1, CompassDirection.S),
-                new Position(2, 2, CompassDirection.W)
-        );
-
         // Act
         boolean result = positionParser.isLandingPositionFree(positionList, null);
 
