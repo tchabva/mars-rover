@@ -13,11 +13,7 @@ public class PlateauSizeParser {
     public PlateauSize parsePlateauSize(String input) {
         String retryString = "Try again! Please enter a valid plateau size input:";
 
-        if (input == null) {
-            System.out.println(retryString);
-            isValidPlateauDimensions = false;
-            return null;
-        } else if (!isValidString.test(input)) {
+        if (input == null || !isValidString.test(input)) {
             System.out.println(retryString);
             isValidPlateauDimensions = false;
             return null;
