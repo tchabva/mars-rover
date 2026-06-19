@@ -28,20 +28,16 @@ public class UserInterface {
         this.positionParser = new PositionParser();
         this.instructionParser = new InstructionParser();
 
-        greeting();
         getPlateauInput();
         getPositionAndInstructions();
-    }
-
-    // Greeting to the user
-    private void greeting(){
-        System.out.println("Welcome to Mars!\nGet ready to deploy...");
     }
 
     // Prompts the user to input the size of the Plateau
     private void getPlateauInput(){
         System.out.print(
                 """
+                        Welcome to Mars!
+                        Get ready to deploy...
                         Choose the size of the plateau you want to explore
                         Input the length and the width of the area in the following format "10 10" or "4 4":
                         """
