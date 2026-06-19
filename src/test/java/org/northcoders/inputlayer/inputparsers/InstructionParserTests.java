@@ -12,7 +12,7 @@ class InstructionParserTests {
 
     @Test
     @DisplayName("Returns valid instruction with a single uppercase character string input")
-    void testInstructionParser(){
+    void testInstructionParser() {
         // Arrange
         InstructionParser instructionParser = new InstructionParser();
         String l = "L";
@@ -35,7 +35,7 @@ class InstructionParserTests {
 
     @Test
     @DisplayName("Returns null instruction with console statement for a null input")
-    void testInstructionParserIsNullSafe(){
+    void testInstructionParserIsNullSafe() {
         // Arrange
         InstructionParser instructionParser = new InstructionParser();
 
@@ -49,7 +49,7 @@ class InstructionParserTests {
 
     @Test
     @DisplayName("Returns valid instruction with a valid lowercase string input")
-    void testInstructionParserIsCaseSafe(){
+    void testInstructionParserIsCaseSafe() {
         // Arrange
         InstructionParser instructionParser = new InstructionParser();
         String l = "L";
@@ -69,7 +69,7 @@ class InstructionParserTests {
 
     @Test
     @DisplayName("Returns null instruction console statement with a single character invalid string input")
-    void testInstructionParserWithInvalidInput(){
+    void testInstructionParserWithInvalidInput() {
         // Arrange
         InstructionParser instructionParser = new InstructionParser();
         String o = "O";
@@ -91,7 +91,7 @@ class InstructionParserTests {
 
     @Test
     @DisplayName("Returns valid instruction on with a multiple character valid string input")
-    void testInstructionParserLongerString(){
+    void testInstructionParserLongerString() {
         // Arrange
         InstructionParser instructionParser = new InstructionParser();
         String input = "LRMMRM";
@@ -112,7 +112,7 @@ class InstructionParserTests {
 
     @Test
     @DisplayName("Returns null instruction console statement with a multiple character invalid string input")
-    void testInstructionParserIncorrectLongerString(){
+    void testInstructionParserIncorrectLongerString() {
         // Arrange
         InstructionParser instructionParser = new InstructionParser();
         String input = "LRMMORM";
