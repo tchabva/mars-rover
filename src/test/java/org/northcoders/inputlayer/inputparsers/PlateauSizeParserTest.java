@@ -1,5 +1,6 @@
 package org.northcoders.inputlayer.inputparsers;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.northcoders.inputlayer.PlateauSize;
@@ -7,13 +8,17 @@ import org.northcoders.inputlayer.PlateauSize;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlateauSizeParserTest {
-    // TODO look into beforeEach
+    private PlateauSizeParser plateauSizeParser;
+
+    @BeforeEach
+    void setUp(){
+        plateauSizeParser = new PlateauSizeParser();
+    }
 
     @Test
     @DisplayName("Returns valid PlateauSize object with a valid string input")
     void testPlateauSizeParser(){
         // Arrange
-        PlateauSizeParser plateauSizeParser = new PlateauSizeParser();
         String inputOne = "1000 10";
         String inputTwo = "5 11";
 
@@ -35,7 +40,6 @@ class PlateauSizeParserTest {
     @DisplayName("Returns PlateauSize object [0,0] for with invalid string input")
     void testPlateauSizeParserWithInvalidStringInput(){
         // Arrange
-        PlateauSizeParser plateauSizeParser = new PlateauSizeParser();
         String inputOne = "1010";
         String inputTwo = "5";
         String inputThree = "5gfhnghgfs";
@@ -56,9 +60,6 @@ class PlateauSizeParserTest {
     @Test
     @DisplayName("Returns PlateauSize object [0,0] for with null input")
     void testPlateauSizeParserWithNullInput(){
-        // Arrange
-        PlateauSizeParser plateauSizeParser = new PlateauSizeParser();
-
         // Act
         PlateauSize plateauSizeOne = plateauSizeParser.parsePlateauSize(null);
 
