@@ -1,5 +1,6 @@
 package org.northcoders.inputlayer.inputparsers;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.northcoders.inputlayer.CompassDirection;
@@ -11,11 +12,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PositionParserTest {
     // TODO: look into @BeforeEach
+    private PositionParser positionParser;
+
+    @BeforeEach
+    void setUp() {
+        positionParser = new PositionParser();
+    }
+
     @Test
     @DisplayName("Returns valid Position object with a valid string input")
-    void testPositionSizeParser(){
+    void testPositionSizeParser() {
         // Arrange
-        PositionParser positionParser = new PositionParser();
         String inputOne = "0 0 N";
         String inputTwo = "5 11 W";
 
@@ -38,9 +45,8 @@ class PositionParserTest {
 
     @Test
     @DisplayName("Returns valid Position object with a valid lowercase string input")
-    void testPositionSizeParserIsCaseSafe(){
+    void testPositionSizeParserIsCaseSafe() {
         // Arrange
-        PositionParser positionParser = new PositionParser();
         String inputOne = "0 0 n";
 
         // Act
@@ -57,9 +63,8 @@ class PositionParserTest {
 
     @Test
     @DisplayName("Returns a false boolean and null for a invalid string input")
-    void testPositionSizeParserWithInvalidInput(){
+    void testPositionSizeParserWithInvalidInput() {
         // Arrange
-        PositionParser positionParser = new PositionParser();
         String inputOne = "1010 N";
         String inputTwo = "5 a R";
         String inputThree = "10 10 C";
@@ -80,10 +85,7 @@ class PositionParserTest {
 
     @Test
     @DisplayName("Returns a false boolean and Position object with co-ordinates [-1,-1, N] with a null input")
-    void testPositionSizeParserWithNullInput(){
-        // Arrange
-        PositionParser positionParser = new PositionParser();
-
+    void testPositionSizeParserWithNullInput() {
         // Act
         Position positionOne = positionParser.positionParser(null);
 
@@ -93,9 +95,8 @@ class PositionParserTest {
 
     @Test
     @DisplayName("Returns a true boolean and when the newPosition does match any of the Positions in the positionList")
-    void testIsLandingPositionIsFree(){
+    void testIsLandingPositionIsFree() {
         // Arrange
-        PositionParser positionParser = new PositionParser();
         List<Position> positionList = List.of(
                 new Position(10, 10, CompassDirection.E),
                 new Position(5, 5, CompassDirection.N),
@@ -105,7 +106,7 @@ class PositionParserTest {
         Position newPosition = new Position(0, 0, CompassDirection.N);
 
         // Act
-       boolean result = positionParser.isLandingPositionFree(positionList, newPosition);
+        boolean result = positionParser.isLandingPositionFree(positionList, newPosition);
 
         // Assert
         assertTrue(result);
@@ -113,9 +114,8 @@ class PositionParserTest {
 
     @Test
     @DisplayName("Returns a false boolean and when the newPosition is equal to a Position in the positionList")
-    void testIsLandingPositionIsFreeForFalseCondition(){
+    void testIsLandingPositionIsFreeForFalseCondition() {
         // Arrange
-        PositionParser positionParser = new PositionParser();
         List<Position> positionList = List.of(
                 new Position(10, 10, CompassDirection.E),
                 new Position(5, 5, CompassDirection.N),
@@ -133,9 +133,8 @@ class PositionParserTest {
 
     @Test
     @DisplayName("Returns a false boolean and when newPosition input is null")
-    void testIsLandingPositionIsFreeNullInput(){
+    void testIsLandingPositionIsFreeNullInput() {
         // Arrange
-        PositionParser positionParser = new PositionParser();
         List<Position> positionList = List.of(
                 new Position(10, 10, CompassDirection.E),
                 new Position(5, 5, CompassDirection.N),
