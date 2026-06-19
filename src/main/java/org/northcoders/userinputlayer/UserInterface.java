@@ -126,7 +126,7 @@ public class UserInterface {
                         """
         );
 
-        String userInput = scanner.nextLine().toUpperCase();
+        String userInput = scanner.nextLine().trim().toUpperCase();
         addAnotherRover = userInput.equals("YES") || userInput.equals("Y");
     }
 
