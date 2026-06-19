@@ -6,13 +6,14 @@ import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+// Checks that the Plateau size inputs from the user are valid
 public class PlateauSizeParser {
     private boolean isValidPlateauDimensions;
-// TODO Update testing
-    public PlateauSize parsePlateauSize(String input){
+
+    public PlateauSize parsePlateauSize(String input) {
         String retryString = "Try again! Please enter a valid plateau size input:";
 
-        if (input == null){
+        if (input == null) {
             System.out.println(retryString);
             isValidPlateauDimensions = false;
             return null;
@@ -20,7 +21,7 @@ public class PlateauSizeParser {
             System.out.println(retryString);
             isValidPlateauDimensions = false;
             return null;
-        }else {
+        } else {
             String[] inputArray = input.split(" ");
             try {
                 int x = Integer.parseInt(inputArray[0]);
@@ -35,7 +36,7 @@ public class PlateauSizeParser {
         }
     }
 
-    private final Predicate<String> isValidString = input ->{
+    private final Predicate<String> isValidString = input -> {
         Pattern pattern = Pattern.compile("(\\d+) (\\d+)");
         Matcher matcher = pattern.matcher(input);
         return matcher.find();
