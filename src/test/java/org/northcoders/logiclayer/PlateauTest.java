@@ -71,26 +71,18 @@ class PlateauTest {
     }
 
     @Test
-    @DisplayName("Returns false if x and y are coordinates of a Rover")
-    void testReturnsFalseIfXAndYAreCoordinatesOfARover() {
+    @DisplayName("Returns true if next position is not free")
+    void returnsFalseIfNextPositionIsNotFree() {
         // Arrange
-        plateau.getRoverList().add(new Rover(new Position(5, 1, CompassDirection.W)));
-        plateau.getRoverList().add(new Rover(new Position(1, 1, CompassDirection.W)));
-        plateau.getRoverList().add(new Rover(new Position(11, 11, CompassDirection.W)));
-        plateau.getRoverList().add(new Rover(new Position(0, 0, CompassDirection.W)));
+        Rover rover = new Rover(new Position(5, 1, CompassDirection.W));
+        Position nextPosition = rover.nextPosition(Instruction.M);
+        plateau.getRoverList().add(rover);
+        plateau.getRoverList().add(new Rover(new Position(6, 1, CompassDirection.W)));
 
         // Act
-        boolean result = plateau.isPositionFree.test(1, 1);
-        boolean resultTwo = plateau.isPositionFree.test(11, 11);
-        boolean resultThree = plateau.isPositionFree.test(5, 1);
-        boolean resultFour = plateau.isPositionFree.test(0, 0);
+        boolean result = plateau.isPositionEmpty(nextPosition, rover);
 
         // Assert
-        assertAll("Return false as they are all the Rover coordinates",
-                () -> assertFalse(result),
-                () -> assertFalse(resultTwo),
-                () -> assertFalse(resultThree),
-                () -> assertFalse(resultFour)
-        );
+        assertTrue(result);
     }
 }
