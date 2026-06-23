@@ -72,7 +72,7 @@ public class Rover {
             System.out.println("System Error!");
             return null;
         }
-    };
+    }
 
     // Returns the nextPosition of X that is equal to or greater than 0
     private final BiFunction<Integer, CompassDirection, Integer> nextPositionX = (posX, direction) -> {
