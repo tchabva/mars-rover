@@ -2,8 +2,8 @@ package org.northcoders.inputlayer.inputparsers;
 
 import org.northcoders.inputlayer.CompassDirection;
 import org.northcoders.inputlayer.Position;
+
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,7 +15,7 @@ public class PositionParser {
             System.out.println("Please enter a valid Position input!");
             isValidPosition = false;
             return null;
-        } else if (!isValidString.test(input)) {
+        } else if (!isValidString(input)) {
             System.out.println("Please enter a valid Position input!");
             isValidPosition = false;
             return null;
@@ -35,11 +35,11 @@ public class PositionParser {
         }
     }
 
-    private final Predicate<String> isValidString = input ->{
+    private boolean isValidString(String input) {
         Pattern pattern = Pattern.compile("(\\d+) (\\d+) [NWSE]", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(input);
         return matcher.find();
-    };
+    }
 
     public Boolean isLandingPositionFree(List<Position> positions, Position newPosition){
         if(newPosition == null){
