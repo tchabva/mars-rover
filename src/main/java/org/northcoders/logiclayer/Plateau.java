@@ -5,7 +5,6 @@ import org.northcoders.inputlayer.Position;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiPredicate;
 
 public class Plateau {
     private final int x;
@@ -36,15 +35,6 @@ public class Plateau {
         }
         return true;
     }
-
-    public BiPredicate<Integer, Integer> isPositionFree = (posX, posY) ->{
-        for (Rover rover : this.roverList){
-            if (posX.equals(rover.getPosition().x()) && posY.equals(rover.getPosition().y())){
-                return false;
-            }
-        }
-        return true;
-    };
 
     public int getY() {
         return y;
