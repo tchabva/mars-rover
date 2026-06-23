@@ -11,7 +11,6 @@ import org.northcoders.inputlayer.Position;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlateauTest {
-    // TODO: UPDATE TESTS FOR isPositionEmpty boolean
     private Plateau plateau;
 
     @BeforeEach
