@@ -1,5 +1,6 @@
 package org.northcoders.logiclayer;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.northcoders.inputlayer.CompassDirection;
@@ -16,11 +17,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MissionControlTest {
 
+    private PlateauSize plateauSize;
+
+    @BeforeEach
+    void setUp() {
+        plateauSize = new PlateauSize(10, 10);
+    }
+
     @Test
     @DisplayName("Create Plateau on initialisation of MissionControl")
     void testMissionControlCreatesPlateau(){
         // Arrange
-        PlateauSize plateauSize = new PlateauSize(10,10);
         Queue<Instruction> queue = new LinkedList<>(List.of(Instruction.L, Instruction.M, Instruction.R));
         List<Queue<Instruction>> instructionList = new ArrayList<>(List.of(queue));
         List<Position> positionList = List.of(new Position(5,5, CompassDirection.W));
@@ -58,7 +65,6 @@ class MissionControlTest {
     @DisplayName("Create Plateau on initialisation of MissionControl")
     void testMissionControlWithNullInstructionInputs(){
         // Arrange
-        PlateauSize plateauSize = new PlateauSize(10,10);
         List<Position> positionList = List.of(new Position(5,5, CompassDirection.W));
 
         // Act
@@ -77,7 +83,6 @@ class MissionControlTest {
     @DisplayName("Creates Rover List on initialisation in the Plateau")
     void testMissionControlCreatesListOfRoversInThePlateau(){
         // Arrange
-        PlateauSize plateauSize = new PlateauSize(10,10);
         Queue<Instruction> queue = new LinkedList<>(List.of(Instruction.L, Instruction.M, Instruction.R));
         List<Queue<Instruction>> instructionList = new ArrayList<>(List.of(queue));
         List<Position> positionList = List.of(
@@ -100,7 +105,6 @@ class MissionControlTest {
     @DisplayName("Creates Rover List in the Plateau identical to the Rover List in MissionControl")
     void testIdenticalRoverLists(){
         // Arrange
-        PlateauSize plateauSize = new PlateauSize(10,10);
         Queue<Instruction> queue = new LinkedList<>(List.of(Instruction.L, Instruction.M, Instruction.R));
         List<Queue<Instruction>> instructionList = new ArrayList<>(List.of(queue));
         List<Position> positionList = List.of(
@@ -123,7 +127,6 @@ class MissionControlTest {
     @DisplayName("Single Rover plateau moves the rover according to the input instruction")
     void testMissionControlMovesRover(){
         // Arrange
-        PlateauSize plateauSize = new PlateauSize(10,10);
         Queue<Instruction> queue = new LinkedList<>(List.of(Instruction.L,
                 Instruction.M,
                 Instruction.M)
@@ -153,7 +156,6 @@ class MissionControlTest {
     @DisplayName("MissionControl moves the multiple Rovers on the plateau according to the input instruction")
     void testMissionControlMovesMultipleRovers(){
         // Arrange
-        PlateauSize plateauSize = new PlateauSize(5,5);
         Queue<Instruction> instructionsListOne = new LinkedList<>(List.of(
                 Instruction.L,
                 Instruction.M,
