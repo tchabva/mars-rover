@@ -2,7 +2,6 @@ package org.northcoders.inputlayer.inputparsers;
 
 import org.northcoders.inputlayer.PlateauSize;
 
-import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,7 +12,7 @@ public class PlateauSizeParser {
     public PlateauSize parsePlateauSize(String input) {
         String retryString = "Try again! Please enter a valid plateau size input:";
 
-        if (input == null || !isValidString.test(input)) {
+        if (input == null || !isValidString(input)) {
             System.out.println(retryString);
             isValidPlateauDimensions = false;
             return null;
@@ -32,11 +31,11 @@ public class PlateauSizeParser {
         }
     }
 
-    private final Predicate<String> isValidString = input -> {
+    private boolean isValidString(String input) {
         Pattern pattern = Pattern.compile("(\\d+) (\\d+)");
         Matcher matcher = pattern.matcher(input);
         return matcher.find();
-    };
+    }
 
     public boolean isValidPlateauDimensions() {
         return isValidPlateauDimensions;
