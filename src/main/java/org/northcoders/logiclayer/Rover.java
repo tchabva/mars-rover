@@ -4,8 +4,6 @@ import org.northcoders.inputlayer.CompassDirection;
 import org.northcoders.inputlayer.Instruction;
 import org.northcoders.inputlayer.Position;
 
-import java.util.function.BiFunction;
-
 public class Rover {
     private Position position;
 
@@ -22,22 +20,22 @@ public class Rover {
     }
 
     // Calculates the next position of the Rover given a single Instruction
-    public Position nextPosition(Instruction instruction){
+    public Position nextPosition(Instruction instruction) {
         int x = position.x();
         int y = position.y();
         CompassDirection compassDirection = position.facing();
 
         try {
-            switch (instruction){
-                case L, R -> compassDirection = rotateCompassDirection(compassDirection,instruction);
+            switch (instruction) {
+                case L, R -> compassDirection = rotateCompassDirection(compassDirection, instruction);
                 case M -> {
-                    switch (compassDirection){
-                        case N, S -> y = nextPositionY.apply(y, compassDirection);
-                        case W, E -> x = nextPositionX.apply(x, compassDirection);
+                    switch (compassDirection) {
+                        case N, S -> y = nextPositionY(y, compassDirection);
+                        case W, E -> x = nextPositionX(x, compassDirection);
                     }
                 }
             }
-            return new Position(x,y, compassDirection);
+            return new Position(x, y, compassDirection);
 
         } catch (NullPointerException e) {
             System.out.println("Invalid Instruction! No movement");
@@ -48,60 +46,60 @@ public class Rover {
     // Rotates the compass direction when given an Instruction of R/L and a CompassDirection
     private CompassDirection rotateCompassDirection(CompassDirection compassDirection, Instruction instruction) {
         try {
-            if (instruction == Instruction.M || instruction == null){
+            if (instruction == Instruction.M || instruction == null) {
                 return compassDirection;
             }
-            switch (compassDirection){
+            switch (compassDirection) {
                 case N -> {
-                    return instruction == Instruction.R? CompassDirection.E : CompassDirection.W;
+                    return instruction == Instruction.R ? CompassDirection.E : CompassDirection.W;
                 }
                 case W -> {
-                    return instruction == Instruction.R? CompassDirection.N : CompassDirection.S;
+                    return instruction == Instruction.R ? CompassDirection.N : CompassDirection.S;
                 }
                 case S -> {
-                    return instruction == Instruction.R? CompassDirection.W : CompassDirection.E;
+                    return instruction == Instruction.R ? CompassDirection.W : CompassDirection.E;
                 }
                 case E -> {
-                    return instruction == Instruction.R? CompassDirection.S : CompassDirection.N;
+                    return instruction == Instruction.R ? CompassDirection.S : CompassDirection.N;
                 }
                 default -> {
                     return compassDirection;
                 }
             }
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             System.out.println("System Error!");
             return null;
         }
     }
 
     // Returns the nextPosition of X that is equal to or greater than 0
-    private final BiFunction<Integer, CompassDirection, Integer> nextPositionX = (posX, direction) -> {
-        if (direction.equals(CompassDirection.W)){
+    private Integer nextPositionX(Integer posX, CompassDirection direction) {
+        if (direction.equals(CompassDirection.W)) {
             return Math.max((posX - 1), 0); // .max returns the larger number of two arguments
-        }else {
+        } else {
             return posX + 1;
         }
-    };
+    }
 
     // Returns the nextPosition of Y that is equal to or greater than 0
-    private final BiFunction<Integer, CompassDirection, Integer> nextPositionY = (posY, direction) -> {
-        if (direction.equals(CompassDirection.S)){
+    private Integer nextPositionY(Integer posY, CompassDirection direction) {
+        if (direction.equals(CompassDirection.S)) {
             return Math.max((posY - 1), 0); // .max returns the larger number of two arguments
-        }else {
+        } else {
             return posY + 1;
         }
-    };
+    }
 
     public CompassDirection getRotateCompassDirection(CompassDirection compassDirection, Instruction instruction) {
         return rotateCompassDirection(compassDirection, instruction);
     }
 
-    public BiFunction<Integer, CompassDirection, Integer> getNextPositionX() {
-        return nextPositionX;
+    public Integer getNextPositionX(Integer posX, CompassDirection direction) {
+        return nextPositionX(posX, direction);
     }
 
-    public BiFunction<Integer, CompassDirection, Integer> getNextPositionY() {
-        return nextPositionY;
+    public Integer getNextPositionY(Integer posY, CompassDirection direction) {
+        return nextPositionY(posY, direction);
     }
 
     @Override
