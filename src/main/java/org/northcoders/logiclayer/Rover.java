@@ -29,7 +29,7 @@ public class Rover {
 
         try {
             switch (instruction){
-                case L, R -> compassDirection = rotateCompassDirection.apply(compassDirection,instruction);
+                case L, R -> compassDirection = rotateCompassDirection(compassDirection,instruction);
                 case M -> {
                     switch (compassDirection){
                         case N, S -> y = nextPositionY.apply(y, compassDirection);
@@ -46,9 +46,8 @@ public class Rover {
     }
 
     // Rotates the compass direction when given an Instruction of R/L and a CompassDirection
-    private final BiFunction<CompassDirection, Instruction, CompassDirection> rotateCompassDirection = (compassDirection, instruction) -> {
+    private CompassDirection rotateCompassDirection(CompassDirection compassDirection, Instruction instruction) {
         try {
-
             if (instruction == Instruction.M || instruction == null){
                 return compassDirection;
             }
@@ -69,7 +68,6 @@ public class Rover {
                     return compassDirection;
                 }
             }
-
         } catch (NullPointerException e){
             System.out.println("System Error!");
             return null;
@@ -94,8 +92,8 @@ public class Rover {
         }
     };
 
-    public BiFunction<CompassDirection, Instruction, CompassDirection> getRotateCompassDirection() {
-        return rotateCompassDirection;
+    public CompassDirection getRotateCompassDirection(CompassDirection compassDirection, Instruction instruction) {
+        return rotateCompassDirection(compassDirection, instruction);
     }
 
     public BiFunction<Integer, CompassDirection, Integer> getNextPositionX() {
