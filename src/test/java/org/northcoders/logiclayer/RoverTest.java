@@ -35,21 +35,29 @@ class RoverTest {
         assertEquals(expectedCompassDirection, result);
     }
 
-    @Test
-    @DisplayName("Returns the correct CompassDirection when Rover is facing North and given an instruction")
-    void testRotateFromNorth() {
+    @DisplayName("Rotates the Rover After Multiple Instructions:")
+    @ParameterizedTest(name = "{0} => {3}", quoteTextArguments = false)
+    @CsvSource({
+            "N, L, L, S",
+            "N, R, R, S",
+            "W, L, R, W",
+    })
+    void shouldCorrectlyRotateTheRoverOnReceivingMultipleInstructions(
+            CompassDirection compassDirection,
+            Instruction instructionOne,
+            Instruction instructionTwo,
+            CompassDirection expectedCompassDirection
+    ) {
         // Arrange
-        Rover rover = new Rover(new Position(0, 0, CompassDirection.N));
+        Rover rover = new Rover(new Position(0, 0, compassDirection));
 
         // Act
-        CompassDirection resultOne = rover.getRotateCompassDirection(rover.getPosition().facing(), Instruction.L);
-        CompassDirection resultTwo = rover.getRotateCompassDirection(rover.getPosition().facing(), Instruction.R);
+        Position nextPosition = rover.nextPosition(instructionOne);
+        rover.setPosition(nextPosition);
+        CompassDirection result = rover.rotateCompassDirection(instructionTwo);
 
         // Assert
-        assertAll("Returns the correct rotation for a North compass direction input and instruction",
-                () -> assertEquals(CompassDirection.W, resultOne),
-                () -> assertEquals(CompassDirection.E, resultTwo)
-        );
+        assertEquals(expectedCompassDirection, result);
     }
 
     @Test
