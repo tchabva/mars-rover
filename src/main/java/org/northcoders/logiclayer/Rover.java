@@ -44,7 +44,7 @@ public class Rover {
     }
 
     // Rotates the compass direction when given an Instruction of R/L and a CompassDirection
-    private CompassDirection rotateCompassDirection(CompassDirection compassDirection, Instruction instruction) {
+    public CompassDirection rotateCompassDirection(CompassDirection compassDirection, Instruction instruction) {
         try {
             if (instruction == Instruction.M || instruction == null) {
                 return compassDirection;
