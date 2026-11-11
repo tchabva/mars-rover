@@ -80,11 +80,7 @@ public class Rover {
 
     // Returns the nextPosition of Y that is equal to or greater than 0
     private Integer nextPositionY(Integer posY, CompassDirection direction) {
-        if (direction.equals(CompassDirection.S)) {
-            return Math.max((posY - 1), 0); // .max returns the larger number of two arguments
-        } else {
-            return posY + 1;
-        }
+        return direction.equals(CompassDirection.S) ? Math.max(posY - 1, 0) : posY + 1;
     }
 
     public CompassDirection getRotateCompassDirection(CompassDirection compassDirection, Instruction instruction) { //TODO: remove useless compassDirection param after cleaning up tests
