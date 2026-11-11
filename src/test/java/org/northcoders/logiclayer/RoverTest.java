@@ -2,6 +2,8 @@ package org.northcoders.logiclayer;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.northcoders.inputlayer.CompassDirection;
 import org.northcoders.inputlayer.Instruction;
 import org.northcoders.inputlayer.Position;
@@ -9,6 +11,29 @@ import org.northcoders.inputlayer.Position;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RoverTest {
+
+    @DisplayName("Rotates the Rover:")
+    @ParameterizedTest(name = "{0} => {2}", quoteTextArguments = false)
+    @CsvSource({
+            "N, L, W",
+            "N, R, E",
+            "E, L, N",
+            "E, R, S",
+            "S, L, E",
+            "S, R, W",
+            "W, L, S",
+            "W, R, N",
+    })
+    void shouldRotateTheRoverFromAnyGivenOrientation(CompassDirection compassDirection, Instruction instruction, CompassDirection expectedCompassDirection) {
+        // Arrange
+        Rover rover = new Rover(new Position(0, 0, compassDirection));
+
+        // Act
+        CompassDirection result = rover.rotateCompassDirection(instruction);
+
+        // Assert
+        assertEquals(expectedCompassDirection, result);
+    }
 
     @Test
     @DisplayName("Returns the correct CompassDirection when Rover is facing North and given an instruction")
@@ -24,57 +49,6 @@ class RoverTest {
         assertAll("Returns the correct rotation for a North compass direction input and instruction",
                 () -> assertEquals(CompassDirection.W, resultOne),
                 () -> assertEquals(CompassDirection.E, resultTwo)
-        );
-    }
-
-    @Test
-    @DisplayName("Returns the correct CompassDirection when Rover is facing South and given an instruction")
-    void testRotateFromSouth() {
-        // Arrange
-        Rover rover = new Rover(new Position(0, 0, CompassDirection.S));
-
-        // Act
-        CompassDirection resultOne = rover.getRotateCompassDirection(rover.getPosition().facing(), Instruction.L);
-        CompassDirection resultTwo = rover.getRotateCompassDirection(rover.getPosition().facing(), Instruction.R);
-
-        // Assert
-        assertAll("Returns the correct rotation for a South compass direction input and instruction",
-                () -> assertEquals(CompassDirection.E, resultOne),
-                () -> assertEquals(CompassDirection.W, resultTwo)
-        );
-    }
-
-    @Test
-    @DisplayName("Returns the correct CompassDirection when Rover is facing East and given an instruction")
-    void testRotateFromEast() {
-        // Arrange
-        Rover rover = new Rover(new Position(0, 0, CompassDirection.E));
-
-        // Act
-        CompassDirection resultOne = rover.getRotateCompassDirection(rover.getPosition().facing(), Instruction.L);
-        CompassDirection resultTwo = rover.getRotateCompassDirection(rover.getPosition().facing(), Instruction.R);
-
-        // Assert
-        assertAll("Returns the correct rotation for an East compass direction input and instruction",
-                () -> assertEquals(CompassDirection.N, resultOne),
-                () -> assertEquals(CompassDirection.S, resultTwo)
-        );
-    }
-
-    @Test
-    @DisplayName("Returns the correct CompassDirection when Rover is facing West and given an instruction")
-    void testRotateFromWest() {
-        // Arrange
-        Rover rover = new Rover(new Position(0, 0, CompassDirection.W));
-
-        // Act
-        CompassDirection resultOne = rover.getRotateCompassDirection(rover.getPosition().facing(), Instruction.L);
-        CompassDirection resultTwo = rover.getRotateCompassDirection(rover.getPosition().facing(), Instruction.R);
-
-        // Assert
-        assertAll("Returns the correct rotation for a West compass direction input and instruction",
-                () -> assertEquals(CompassDirection.S, resultOne),
-                () -> assertEquals(CompassDirection.N, resultTwo)
         );
     }
 
