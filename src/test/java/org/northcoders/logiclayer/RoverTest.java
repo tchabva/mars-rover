@@ -1,6 +1,7 @@
 package org.northcoders.logiclayer;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -8,87 +9,93 @@ import org.northcoders.inputlayer.CompassDirection;
 import org.northcoders.inputlayer.Instruction;
 import org.northcoders.inputlayer.Position;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RoverTest {
 
-    @DisplayName("Rotates the Rover:")
-    @ParameterizedTest(name = "{0} => {2}", quoteTextArguments = false)
-    @CsvSource({
-            "N, L, W",
-            "N, R, E",
-            "E, L, N",
-            "E, R, S",
-            "S, L, E",
-            "S, R, W",
-            "W, L, S",
-            "W, R, N",
-    })
-    void shouldRotateTheRoverFromAnyGivenOrientation(CompassDirection compassDirection, Instruction instruction, CompassDirection expectedCompassDirection) {
-        // Arrange
-        Rover rover = new Rover(new Position(0, 0, compassDirection));
+    @DisplayName("Rotation Tests")
+    @Nested
+    class RotateRover{
 
-        // Act
-        CompassDirection result = rover.rotateCompassDirection(instruction);
+        @DisplayName("Rotates the Rover:")
+        @ParameterizedTest(name = "{0} => {2}", quoteTextArguments = false)
+        @CsvSource({
+                "N, L, W",
+                "N, R, E",
+                "E, L, N",
+                "E, R, S",
+                "S, L, E",
+                "S, R, W",
+                "W, L, S",
+                "W, R, N",
+        })
+        void shouldRotateTheRoverFromAnyGivenOrientation(CompassDirection compassDirection, Instruction instruction, CompassDirection expectedCompassDirection) {
+            // Arrange
+            Rover rover = new Rover(new Position(0, 0, compassDirection));
 
-        // Assert
-        assertEquals(expectedCompassDirection, result);
-    }
+            // Act
+            CompassDirection result = rover.rotateCompassDirection(instruction);
 
-    @DisplayName("Rotates the Rover After Multiple Instructions:")
-    @ParameterizedTest(name = "{0} => {3}", quoteTextArguments = false)
-    @CsvSource({
-            "N, L, L, S",
-            "N, R, R, S",
-            "W, L, R, W",
-    })
-    void shouldCorrectlyRotateTheRoverOnReceivingMultipleInstructions(
-            CompassDirection compassDirection,
-            Instruction instructionOne,
-            Instruction instructionTwo,
-            CompassDirection expectedCompassDirection
-    ) {
-        // Arrange
-        Rover rover = new Rover(new Position(0, 0, compassDirection));
+            // Assert
+            assertEquals(expectedCompassDirection, result);
+        }
 
-        // Act
-        Position nextPosition = rover.nextPosition(instructionOne);
-        rover.setPosition(nextPosition);
-        CompassDirection result = rover.rotateCompassDirection(instructionTwo);
+        @DisplayName("Rotates the Rover After Multiple Instructions:")
+        @ParameterizedTest(name = "{0} => {3}", quoteTextArguments = false)
+        @CsvSource({
+                "N, L, L, S",
+                "N, R, R, S",
+                "W, L, R, W",
+        })
+        void shouldCorrectlyRotateTheRoverOnReceivingMultipleInstructions(
+                CompassDirection compassDirection,
+                Instruction instructionOne,
+                Instruction instructionTwo,
+                CompassDirection expectedCompassDirection
+        ) {
+            // Arrange
+            Rover rover = new Rover(new Position(0, 0, compassDirection));
 
-        // Assert
-        assertEquals(expectedCompassDirection, result);
-    }
+            // Act
+            Position nextPosition = rover.nextPosition(instructionOne);
+            rover.setPosition(nextPosition);
+            CompassDirection result = rover.rotateCompassDirection(instructionTwo);
 
-    @DisplayName("Does Not Rotate the Rover When Given \"Move\" Instruction:")
-    @ParameterizedTest(name = "{0} => {1}", quoteTextArguments = false)
-    @CsvSource({
-            "N, N",
-            "W, W",
-            "E, E",
-            "S, S",
-    })
-    void shouldNotRotateWhenGivenMoveInstruction(CompassDirection compassDirection, CompassDirection expectedCompassDirection) {
-        // Arrange
-        Rover rover = new Rover(new Position(0, 0, compassDirection));
+            // Assert
+            assertEquals(expectedCompassDirection, result);
+        }
 
-        // Act
-        CompassDirection resultOne = rover.rotateCompassDirection(Instruction.M);
-        // Assert
-        assertEquals(expectedCompassDirection, resultOne);
-    }
+        @DisplayName("Does Not Rotate the Rover When Given \"Move\" Instruction:")
+        @ParameterizedTest(name = "{0} => {1}", quoteTextArguments = false)
+        @CsvSource({
+                "N, N",
+                "W, W",
+                "E, E",
+                "S, S",
+        })
+        void shouldNotRotateWhenGivenMoveInstruction(CompassDirection compassDirection, CompassDirection expectedCompassDirection) {
+            // Arrange
+            Rover rover = new Rover(new Position(0, 0, compassDirection));
 
-    @Test
-    @DisplayName("Returns the correct CompassDirection when Rover is given null as an input")
-    void shouldReturnDirectionWhenGivenNullInstruction() {
-        // Arrange
-        Rover rover = new Rover(new Position(0, 0, CompassDirection.W));
+            // Act
+            CompassDirection resultOne = rover.rotateCompassDirection(Instruction.M);
+            // Assert
+            assertEquals(expectedCompassDirection, resultOne);
+        }
 
-        // Act
-        CompassDirection resultOne = rover.getRotateCompassDirection(rover.getPosition().facing(), null);
+        @Test
+        @DisplayName("Returns the correct CompassDirection when Rover is given null as an input")
+        void shouldReturnDirectionWhenGivenNullInstruction() {
+            // Arrange
+            Rover rover = new Rover(new Position(0, 0, CompassDirection.W));
 
-        // Assert
-        assertEquals(CompassDirection.W, resultOne);
+            // Act
+            CompassDirection resultOne = rover.getRotateCompassDirection(rover.getPosition().facing(), null);
+
+            // Assert
+            assertEquals(CompassDirection.W, resultOne);
+        }
     }
 
     @Test
