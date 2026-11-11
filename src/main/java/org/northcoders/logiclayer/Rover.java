@@ -27,7 +27,7 @@ public class Rover {
 
         try {
             switch (instruction) {
-                case L, R -> compassDirection = rotateCompassDirection(compassDirection, instruction);
+                case L, R -> compassDirection = rotateCompassDirection(instruction);
                 case M -> {
                     switch (compassDirection) {
                         case N, S -> y = nextPositionY(y, compassDirection);
@@ -44,7 +44,8 @@ public class Rover {
     }
 
     // Rotates the compass direction when given an Instruction of R/L and a CompassDirection
-    public CompassDirection rotateCompassDirection(CompassDirection compassDirection, Instruction instruction) {
+    public CompassDirection rotateCompassDirection(Instruction instruction) {
+        CompassDirection compassDirection = this.getPosition().facing();
         try {
             if (instruction == Instruction.M || instruction == null) {
                 return compassDirection;
@@ -90,8 +91,8 @@ public class Rover {
         }
     }
 
-    public CompassDirection getRotateCompassDirection(CompassDirection compassDirection, Instruction instruction) {
-        return rotateCompassDirection(compassDirection, instruction);
+    public CompassDirection getRotateCompassDirection(CompassDirection compassDirection, Instruction instruction) { //TODO: remove useless compassDirection param after cleaning up tests
+        return rotateCompassDirection(instruction);
     }
 
     public Integer getNextPositionX(Integer posX, CompassDirection direction) {
