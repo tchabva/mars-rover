@@ -11,11 +11,11 @@ public class Rover {
         this.position = position;
     }
 
-    public Position getPosition() {
+    public Position position() {
         return position;
     }
 
-    public void setPosition(Position position) {
+    public void position(Position position) {
         this.position = position;
     }
 
@@ -45,7 +45,7 @@ public class Rover {
 
     // Rotates the compass direction when given an Instruction of R/L and a CompassDirection
     public CompassDirection rotateCompassDirection(Instruction instruction) {
-        CompassDirection compassDirection = this.getPosition().facing();
+        CompassDirection compassDirection = this.position().facing();
         try {
             if (instruction == Instruction.M || instruction == null) {
                 return compassDirection;
