@@ -60,27 +60,22 @@ class RoverTest {
         assertEquals(expectedCompassDirection, result);
     }
 
-    @Test
-    @DisplayName("Returns the correct CompassDirection when Rover is given an the Move instruction")
-    void testRotateWithMoveInstruction() {
+    @DisplayName("Does Not Rotate the Rover When Given \"Move\" Instruction:")
+    @ParameterizedTest(name = "{0} => {1}", quoteTextArguments = false)
+    @CsvSource({
+            "N, N",
+            "W, W",
+            "E, E",
+            "S, S",
+    })
+    void shouldNotRotateWhenGivenMoveInstruction(CompassDirection compassDirection, CompassDirection expectedCompassDirection) {
         // Arrange
-        Rover rover = new Rover(new Position(0, 0, CompassDirection.N));
-        Rover roverTwo = new Rover(new Position(1, 0, CompassDirection.E));
-        Rover roverThree = new Rover(new Position(2, 0, CompassDirection.S));
-        Rover roverFour = new Rover(new Position(3, 0, CompassDirection.W));
+        Rover rover = new Rover(new Position(0, 0, compassDirection));
 
         // Act
         CompassDirection resultOne = rover.getRotateCompassDirection(CompassDirection.N, Instruction.M);
-        CompassDirection resultTwo = roverTwo.getRotateCompassDirection(roverTwo.getPosition().facing(), Instruction.M);
-        CompassDirection resultThree = roverThree.getRotateCompassDirection(roverThree.getPosition().facing(), Instruction.M);
-        CompassDirection resultFour = roverFour.getRotateCompassDirection(roverFour.getPosition().facing(), Instruction.M);
         // Assert
-        assertAll("Returns the correct rotation for a compass direction input and M Instruction input",
-                () -> assertEquals(CompassDirection.N, resultOne),
-                () -> assertEquals(CompassDirection.E, resultTwo),
-                () -> assertEquals(CompassDirection.S, resultThree),
-                () -> assertEquals(CompassDirection.W, resultFour)
-        );
+        assertEquals(expectedCompassDirection, resultOne);
     }
 
     @Test
