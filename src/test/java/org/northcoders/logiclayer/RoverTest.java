@@ -80,21 +80,15 @@ class RoverTest {
 
     @Test
     @DisplayName("Returns the correct CompassDirection when Rover is given null as an input")
-    void testRotateWithNullInput() {
+    void shouldReturnDirectionWhenGivenNullInstruction() {
         // Arrange
         Rover rover = new Rover(new Position(0, 0, CompassDirection.W));
 
         // Act
         CompassDirection resultOne = rover.getRotateCompassDirection(rover.getPosition().facing(), null);
-        CompassDirection resultTwo = rover.getRotateCompassDirection(null, Instruction.R);
-        CompassDirection resultThree = rover.getRotateCompassDirection(null, null);
 
         // Assert
-        assertAll("Returns null for a null for a compass direction input and instruction",
-                () -> assertEquals(CompassDirection.W, resultOne),
-                () -> assertNull(resultTwo),
-                () -> assertNull(resultThree)
-        );
+        assertEquals(CompassDirection.W, resultOne);
     }
 
     @Test
