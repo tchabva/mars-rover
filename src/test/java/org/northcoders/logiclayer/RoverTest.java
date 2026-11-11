@@ -73,7 +73,7 @@ class RoverTest {
         Rover rover = new Rover(new Position(0, 0, compassDirection));
 
         // Act
-        CompassDirection resultOne = rover.getRotateCompassDirection(CompassDirection.N, Instruction.M);
+        CompassDirection resultOne = rover.rotateCompassDirection(Instruction.M);
         // Assert
         assertEquals(expectedCompassDirection, resultOne);
     }
