@@ -74,12 +74,12 @@ public class Rover {
     }
 
     // Returns the nextPosition of X that is equal to or greater than 0
-    private Integer nextPositionX(Integer posX, CompassDirection direction) {
+    public Integer nextPositionX(Integer posX, CompassDirection direction) {
         return direction.equals(CompassDirection.W) ? Math.max(0, posX - 1) : posX + 1;
     }
 
     // Returns the nextPosition of Y that is equal to or greater than 0
-    private Integer nextPositionY(Integer posY, CompassDirection direction) {
+    public Integer nextPositionY(Integer posY, CompassDirection direction) {
         return direction.equals(CompassDirection.S) ? Math.max(posY - 1, 0) : posY + 1;
     }
 
