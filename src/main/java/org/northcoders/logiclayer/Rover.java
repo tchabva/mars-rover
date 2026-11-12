@@ -30,8 +30,8 @@ public class Rover {
                 case L, R -> compassDirection = rotateCompassDirection(instruction);
                 case M -> {
                     switch (compassDirection) {
-                        case N, S -> y = nextPositionY(y, compassDirection);
-                        case W, E -> x = nextPositionX(x, compassDirection);
+                        case N, S -> y = nextPositionY(compassDirection);
+                        case W, E -> x = nextPositionX(compassDirection);
                     }
                 }
             }
@@ -74,25 +74,19 @@ public class Rover {
     }
 
     // Returns the nextPosition of X that is equal to or greater than 0
-    public Integer nextPositionX(Integer posX, CompassDirection direction) {
-        return direction.equals(CompassDirection.W) ? Math.max(0, posX - 1) : posX + 1;
+    public Integer nextPositionX(final CompassDirection direction) {
+        final int x = this.position.x();
+        return direction.equals(CompassDirection.W) ? Math.max(0, x - 1) : x + 1;
     }
 
     // Returns the nextPosition of Y that is equal to or greater than 0
-    public Integer nextPositionY(Integer posY, CompassDirection direction) {
-        return direction.equals(CompassDirection.S) ? Math.max(posY - 1, 0) : posY + 1;
+    public Integer nextPositionY(final CompassDirection direction) {
+        final int y = this.position.y();
+        return direction.equals(CompassDirection.S) ? Math.max(y - 1, 0) : y + 1;
     }
 
     public CompassDirection getRotateCompassDirection(CompassDirection compassDirection, Instruction instruction) { //TODO: remove useless compassDirection param after cleaning up tests
         return rotateCompassDirection(instruction);
-    }
-
-    public Integer getNextPositionX(Integer posX, CompassDirection direction) {
-        return nextPositionX(posX, direction);
-    }
-
-    public Integer getNextPositionY(Integer posY, CompassDirection direction) {
-        return nextPositionY(posY, direction);
     }
 
     @Override
