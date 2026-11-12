@@ -98,19 +98,28 @@ class RoverTest {
         }
     }
 
-    @Test
-    @DisplayName("Returns the correct X Co-ordinate for a given input")
-    void shouldReturnCorrectXCoordinateWhenGivenI() {
-        // Arrange
-        Rover rover = new Rover(new Position(3, 3, CompassDirection.E));
+    @DisplayName("Rover Co-Ordinates")
+    @Nested
+    class RoverCoOrdinates{
 
-        // Act
-        int resultEast = rover.nextPositionX(rover.position().facing());
-        int resultWest = rover.nextPositionX(CompassDirection.W);
+        @DisplayName("Returns the correct X Co-ordinate for a given input")
+        @ParameterizedTest(name = "{index} Direction = {0}", quoteTextArguments = false)
+        @CsvSource({
+                "E, 4",
+                "W, 2",
+                "N, 3",
+                "S, 3",
+        })
+        void shouldReturnCorrectXCoordinateWhenGivenI(CompassDirection compassDirection, int expectedPosition) {
+            // Arrange
+            Rover rover = new Rover(new Position(3, 3, compassDirection));
 
-        // Assert
-        assertEquals(4, resultEast);
-        assertEquals(2, resultWest);
+            // Act
+            int result = rover.nextPositionX(rover.position().facing());
+
+            //
+            assertEquals(expectedPosition, result);
+        }
     }
 
     @Test
