@@ -110,7 +110,7 @@ class RoverTest {
                 "N, 3",
                 "S, 3",
         })
-        void shouldReturnCorrectXCoordinateWhenGivenI(CompassDirection compassDirection, int expectedPosition) {
+        void shouldReturnCorrectXCoordinateWhenGivenI(CompassDirection compassDirection, int expectedXCoordinate) {
             // Arrange
             Rover rover = new Rover(new Position(3, 3, compassDirection));
 
@@ -118,7 +118,26 @@ class RoverTest {
             int result = rover.nextPositionX(rover.position().facing());
 
             //
-            assertEquals(expectedPosition, result);
+            assertEquals(expectedXCoordinate, result);
+        }
+
+        @DisplayName("Returns the correct Y Co-ordinate for a given input")
+        @ParameterizedTest(name = "{index} Direction = {0}", quoteTextArguments = false)
+        @CsvSource({
+                "E, 3",
+                "W, 3",
+                "N, 4",
+                "S, 2",
+        })
+        void shouldReturnCorrectYCoordinateWhenGivenI(CompassDirection compassDirection, int expectedYCoordinate) {
+            // Arrange
+            Rover rover = new Rover(new Position(3, 3, compassDirection));
+
+            // Act
+            int result = rover.nextPositionY(rover.position().facing());
+
+            //
+            assertEquals(expectedYCoordinate, result);
         }
     }
 
