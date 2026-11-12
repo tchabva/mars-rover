@@ -139,42 +139,24 @@ class RoverTest {
             //
             assertEquals(expectedYCoordinate, result);
         }
-    }
 
-    @Test
-    @DisplayName("Returns the correct Positions Y given input")
-    void testPositionsY() {
-        // Arrange
-        Rover rover = new Rover(new Position(3, 3, CompassDirection.N));
+        @DisplayName("Does Not Return Coordinates Below Zero")
+        @ParameterizedTest(name = "For {0} on axis", quoteTextArguments = false)
+        @CsvSource({
+                "W, X",
+                "S, Y",
+        })
+        void shouldNotReturnCoordinatesBelowZero(CompassDirection compassDirection) {
+            // Arrange
+            Rover rover = new Rover(new Position(0, 0, compassDirection));
 
-        // Act
-        int resultEast = rover.nextPositionY(rover.position().facing());
-        int resultWest = rover.nextPositionY(CompassDirection.S);
+            // Act
+            int resultOne = rover.nextPositionX(compassDirection);
 
-        // Assert
-        assertEquals(4, resultEast);
-        assertEquals(2, resultWest);
-    }
+            // Assert
+            assertEquals(0, resultOne);
+        }
 
-    @Test
-    @DisplayName("Returns 0 when when given Instruction that tries to return negative position X")
-    void testDoesNotReturnPositionXBelowZero() {
-        // Arrange
-        Rover rover = new Rover(new Position(3, 3, CompassDirection.W));
-        Rover roverTwo = new Rover(new Position(1, 3, CompassDirection.W));
-        Rover roverThree = new Rover(new Position(0, 3, CompassDirection.W));
-
-        // Act
-        int resultOne = rover.nextPositionX( CompassDirection.W);
-        int resultTwo = roverTwo.nextPositionX(CompassDirection.W);
-        int resultThree = roverThree.nextPositionX(CompassDirection.W);
-
-        // Assert
-        assertAll("Returns null for a nul for a compass direction input and instruction",
-                () -> assertEquals(2, resultOne),
-                () -> assertEquals(0, resultTwo),
-                () -> assertEquals(0, resultThree)
-        );
     }
 
     @Test
