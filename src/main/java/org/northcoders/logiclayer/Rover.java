@@ -85,6 +85,9 @@ public class Rover {
     // Returns the nextPosition of Y that is equal to or greater than 0
     public Integer nextPositionY(final CompassDirection direction) {
         final int y = this.position.y();
+        if (direction == CompassDirection.W || direction == CompassDirection.E) {
+            return y;
+        }
         return direction.equals(CompassDirection.S) ? Math.max(y - 1, 0) : y + 1;
     }
 
