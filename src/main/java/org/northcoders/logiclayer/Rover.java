@@ -76,6 +76,9 @@ public class Rover {
     // Returns the nextPosition of X that is equal to or greater than 0
     public Integer nextPositionX(final CompassDirection direction) {
         final int x = this.position.x();
+        if (direction == null) {
+            return x;
+        }
         if (direction == CompassDirection.N || direction == CompassDirection.S) {
             return x;
         }
