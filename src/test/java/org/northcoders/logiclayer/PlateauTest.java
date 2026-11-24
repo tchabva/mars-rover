@@ -3,6 +3,8 @@ package org.northcoders.logiclayer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.northcoders.inputlayer.CompassDirection;
 import org.northcoders.inputlayer.Instruction;
 import org.northcoders.inputlayer.PlateauSize;
@@ -18,22 +20,22 @@ class PlateauTest {
         plateau = new Plateau(new PlateauSize(10, 10));
     }
 
-    @Test
     @DisplayName("Returns true if x and y are within the plateau boundary")
-    void testReturnsTrueIfXAndYAreInPlateau() {
+    @ParameterizedTest(name = "X = {0}, Y = {1}", quoteTextArguments = false)
+    @CsvSource({
+            "1, 1",
+            "10, 10",
+            "0, 10",
+            "10, 0",
+            "0, 0",
+            "4, 6",
+    })
+    void shouldReturnTrueIfXAndYAreWithinPlateauBoundary(int posX, int posY) {
         // Arrange & Act
-        boolean result = plateau.isPositionValid(1, 1);
-        boolean resultTwo = plateau.isPositionValid(10, 10);
-        boolean resultThree = plateau.isPositionValid(5, 1);
-        boolean resultFour = plateau.isPositionValid(0, 0);
+        boolean result = plateau.isPositionValid(posX, posY);
 
         // Assert
-        assertAll("Return true as they are in all the plateau bounds",
-                () -> assertTrue(result),
-                () -> assertTrue(resultTwo),
-                () -> assertTrue(resultThree),
-                () -> assertTrue(resultFour)
-        );
+        assertTrue(result);
     }
 
     @Test
