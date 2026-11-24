@@ -141,12 +141,12 @@ class RoverTest {
         }
 
         @DisplayName("Does Not Return Coordinates Below Zero")
-        @ParameterizedTest(name = "For {0} on axis", quoteTextArguments = false)
+        @ParameterizedTest(name = "For {0} on {1}-axis", quoteTextArguments = false)
         @CsvSource({
                 "W, X",
                 "S, Y",
         })
-        void shouldNotReturnCoordinatesBelowZero(CompassDirection compassDirection) {
+        void shouldNotReturnCoordinatesBelowZero(CompassDirection compassDirection, String axis) {
             // Arrange
             Rover rover = new Rover(new Position(0, 0, compassDirection));
 
@@ -157,27 +157,6 @@ class RoverTest {
             assertEquals(0, resultOne);
         }
 
-    }
-
-    @Test
-    @DisplayName("Returns 0 when when given Instruction that tries to return negative position Y")
-    void testDoesNotReturnPositionYBelowZero() {
-        // Arrange
-        Rover rover = new Rover(new Position(3, 3, CompassDirection.S));
-        Rover roverTwo = new Rover(new Position(3, 1, CompassDirection.S));
-        Rover roverThree = new Rover(new Position(3, 0, CompassDirection.S));
-
-        // Act
-        int resultOne = rover.nextPositionY( CompassDirection.S);
-        int resultTwo = roverTwo.nextPositionY(CompassDirection.S);
-        int resultThree = roverThree.nextPositionY(CompassDirection.S);
-
-        // Assert
-        assertAll("Returns null for a nul for a compass direction input and instruction",
-                () -> assertEquals(2, resultOne),
-                () -> assertEquals(0, resultTwo),
-                () -> assertEquals(0, resultThree)
-        );
     }
 
     @Test
