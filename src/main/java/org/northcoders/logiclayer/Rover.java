@@ -20,27 +20,20 @@ public class Rover {
     }
 
     // Calculates the next position of the Rover given a single Instruction
-    public Position nextPosition(Instruction instruction) {
-        int x = position.x();
-        int y = position.y();
-        CompassDirection compassDirection = position.facing();
+    public Position nextPosition(final Instruction instruction) {
+        final CompassDirection compassDirection = position.facing();
 
-        try {
-            switch (instruction) {
-                case L, R -> compassDirection = rotateCompassDirection(instruction);
-                case M -> {
-                    switch (compassDirection) {
-                        case N, S -> y = nextPositionY(compassDirection);
-                        case W, E -> x = nextPositionX(compassDirection);
-                    }
+            return switch (instruction) {
+                case L, R -> new Position(position.x(), position.y(), rotateCompassDirection(instruction));
+                case M -> switch (compassDirection) {
+                        case N, S -> new Position(position.x(), nextPositionY(compassDirection), position.facing());
+                        case W, E -> new Position(nextPositionX(compassDirection), position.y(), position.facing());
+                };
+                case null -> {
+                    System.out.println("Invalid Instruction! No movement");
+                    yield position;
                 }
-            }
-            return new Position(x, y, compassDirection);
-
-        } catch (NullPointerException e) {
-            System.out.println("Invalid Instruction! No movement");
-            return position;
-        }
+            };
     }
 
     // Rotates the compass direction when given an Instruction of R/L and a CompassDirection
