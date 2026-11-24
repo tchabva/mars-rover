@@ -9,14 +9,13 @@ import org.northcoders.inputlayer.CompassDirection;
 import org.northcoders.inputlayer.Instruction;
 import org.northcoders.inputlayer.Position;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RoverTest {
 
     @DisplayName("Rotation Tests")
     @Nested
-    class RotateRover{
+    class RotateRover {
 
         @DisplayName("Rotates the Rover:")
         @ParameterizedTest(name = "{0} => {2}", quoteTextArguments = false)
@@ -100,7 +99,7 @@ class RoverTest {
 
     @DisplayName("Rover Co-Ordinates")
     @Nested
-    class RoverCoOrdinates{
+    class RoverCoOrdinates {
 
         @DisplayName("Returns the correct X Co-ordinate for a given input")
         @ParameterizedTest(name = "{index} Direction = {0}", quoteTextArguments = false)
@@ -110,7 +109,7 @@ class RoverTest {
                 "N, 3",
                 "S, 3",
         })
-        void shouldReturnCorrectXCoordinateWhenGivenI(CompassDirection compassDirection, int expectedXCoordinate) {
+        void shouldReturnCorrectXCoordinate(CompassDirection compassDirection, int expectedXCoordinate) {
             // Arrange
             Rover rover = new Rover(new Position(3, 3, compassDirection));
 
@@ -184,42 +183,48 @@ class RoverTest {
         }
     }
 
-    @Test
-    @DisplayName("Returns the next position when given correct input")
-    void testNextPosition() {
-        // Arrange
-        Rover rover = new Rover(new Position(3, 3, CompassDirection.W));
-        Rover roverTwo = new Rover(new Position(3, 3, CompassDirection.N));
+    @DisplayName("Rover Position")
+    @Nested
+    class RoverPosition {
 
-        // Act
-        Position positionResult = rover.nextPosition(Instruction.M);
-        Position positionResultLeft = rover.nextPosition(Instruction.L);
-        Position positionResultRight = rover.nextPosition(Instruction.R);
-        Position positionMoveRoverTwo = roverTwo.nextPosition(Instruction.M);
+        @DisplayName("Should Return the Next Rover Position")
+        @ParameterizedTest(name = "For {index}", quoteTextArguments = false)
+        @CsvSource({
+                "W, M, 2, 3, W",
+                "N, M, 3, 4, N",
+                "W, L, 3, 3, S",
+                "N, R, 3, 3, E",
+        })
+        void shouldReturnTheNextRoverPosition(
+                CompassDirection compassDirection,
+                Instruction instruction,
+                int x,
+                int y,
+                CompassDirection expectedCompassDirection
+        ) {
+            // Arrange
+            Rover rover = new Rover(new Position(3, 3, compassDirection));
+            Position expectedNextPosition = new Position(x, y, expectedCompassDirection);
 
-        // Assert
-        assertAll("Returns correction results for the nextPosition method",
-                () -> assertEquals(2, positionResult.x()),
-                () -> assertEquals(CompassDirection.S, positionResultLeft.facing()),
-                () -> assertEquals(4, positionMoveRoverTwo.y()),
-                () -> assertEquals(CompassDirection.N, positionResultRight.facing())
-        );
-    }
+            // Act
+            Position positionResult = rover.nextPosition(instruction);
 
-    @Test
-    @DisplayName("Returns the current position when given null input")
-    void testNextPositionWithNullInput() {
-        // Arrange
-        Rover rover = new Rover(new Position(1, 3, CompassDirection.W));
+            // Assert
+            assertEquals(expectedNextPosition, positionResult);
+        }
 
-        // Act
-        Position positionResult = rover.nextPosition(null);
+        @Test
+        @DisplayName("Returns the current position when given null input")
+        void testNextPositionWithNullInput() {
+            // Arrange
+            Position expectedPosition = new Position(1, 3, CompassDirection.W);
+            Rover rover = new Rover(expectedPosition);
 
-        // Assert
-        assertAll("Returns correction results for the nextPosition method",
-                () -> assertEquals(1, positionResult.x()),
-                () -> assertEquals(3, positionResult.y()),
-                () -> assertEquals(CompassDirection.W, positionResult.facing())
-        );
+            // Act
+            Position nextPosition = rover.nextPosition(null);
+
+            // Assert
+            assertEquals(expectedPosition, nextPosition);
+        }
     }
 }
