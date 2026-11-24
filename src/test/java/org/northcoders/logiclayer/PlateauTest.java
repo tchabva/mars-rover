@@ -71,18 +71,18 @@ class PlateauTest {
     }
 
     @Test
-    @DisplayName("Returns true if next position is not free")
+    @DisplayName("Returns false if next position is not free")
     void returnsFalseIfNextPositionIsNotFree() {
         // Arrange
-        Rover rover = new Rover(new Position(5, 1, CompassDirection.W));
+        plateau.getRoverList().add(new Rover(new Position(6, 1, CompassDirection.W)));
+        Rover rover = new Rover(new Position(7, 1, CompassDirection.W));
         Position nextPosition = rover.nextPosition(Instruction.M);
         plateau.getRoverList().add(rover);
-        plateau.getRoverList().add(new Rover(new Position(6, 1, CompassDirection.W)));
 
         // Act
         boolean result = plateau.isPositionEmpty(nextPosition, rover);
 
         // Assert
-        assertTrue(result);
+        assertFalse(result);
     }
 }
