@@ -157,19 +157,31 @@ class RoverTest {
             assertEquals(0, resultOne);
         }
 
-    }
+        @Test
+        @DisplayName("Returns the input position when given an null CompassDirection for next X-axis co-ordinate")
+        void shouldReturnInputPositionForNullCompassDirectionForNextXCoOrdinatePosition() {
+            // Arrange
+            Rover rover = new Rover(new Position(3, 3, CompassDirection.W));
 
-    @Test
-    @DisplayName("Returns the input position when given an null CompassDirection for next Y-axis co-ordinate")
-    void shouldReturnInputPositionForNullCompassDirectionForNextYCoOrdinatePosition() {
-        // Arrange
-        Rover rover = new Rover(new Position(3, 3, CompassDirection.W));
+            // Act
+            int resultOne = rover.nextPositionX(null);
 
-        // Act
-        int resultOne = rover.nextPositionY(null);
+            // Assert
+            assertEquals(3, resultOne);
+        }
 
-        // Assert
-        assertEquals(3, resultOne);
+        @Test
+        @DisplayName("Returns the input position when given an null CompassDirection for next Y-axis co-ordinate")
+        void shouldReturnInputPositionForNullCompassDirectionForNextYCoOrdinatePosition() {
+            // Arrange
+            Rover rover = new Rover(new Position(3, 3, CompassDirection.W));
+
+            // Act
+            int resultOne = rover.nextPositionY(null);
+
+            // Assert
+            assertEquals(3, resultOne);
+        }
     }
 
     @Test
