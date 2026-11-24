@@ -90,9 +90,9 @@ class RoverTest {
             Rover rover = new Rover(new Position(0, 0, CompassDirection.W));
 
             // Act
-            CompassDirection resultOne = rover.getRotateCompassDirection(rover.position().facing(), null);
+            CompassDirection resultOne = rover.rotateCompassDirection(null);
 
-            // Assert
+            // Asserti
             assertEquals(CompassDirection.W, resultOne);
         }
     }

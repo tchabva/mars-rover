@@ -90,10 +90,6 @@ public class Rover {
         return direction.equals(CompassDirection.S) ? Math.max(y - 1, 0) : y + 1;
     }
 
-    public CompassDirection getRotateCompassDirection(CompassDirection compassDirection, Instruction instruction) { //TODO: remove useless compassDirection param after cleaning up tests
-        return rotateCompassDirection(instruction);
-    }
-
     @Override
     public String toString() {
         return position.x() + " " + position.y() + " " + position.facing().name();
