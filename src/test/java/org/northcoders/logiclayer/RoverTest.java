@@ -160,22 +160,16 @@ class RoverTest {
     }
 
     @Test
-    @DisplayName("Returns the input position when given an invalid CompassDirection")
-    void testReturnsInputPositionForInvalidCompassDirection() {
+    @DisplayName("Returns the input position when given an null CompassDirection for next Y-axis co-ordinate")
+    void shouldReturnInputPositionForNullCompassDirectionForNextYCoOrdinatePosition() {
         // Arrange
         Rover rover = new Rover(new Position(3, 3, CompassDirection.W));
-        Rover roverTwo = new Rover(new Position(3, 1, CompassDirection.W));
 
         // Act
-        int resultOne = rover.nextPositionY(CompassDirection.S);
-        int resultTwo = roverTwo.nextPositionY( CompassDirection.S);
-
+        int resultOne = rover.nextPositionY(null);
 
         // Assert
-        assertAll("Returns null for a nul for a compass direction input and instruction",
-                () -> assertEquals(2, resultOne),
-                () -> assertEquals(0, resultTwo)
-        );
+        assertEquals(3, resultOne);
     }
 
     @Test
