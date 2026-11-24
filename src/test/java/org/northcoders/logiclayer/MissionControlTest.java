@@ -42,8 +42,8 @@ class MissionControlTest {
         missionControl.printRoverPosition();
 
         // Assert
-        assertEquals(10, missionControl.getPlateau().getX());
-        assertEquals(10, missionControl.getPlateau().getY());
+        assertEquals(10, missionControl.getPlateau().x());
+        assertEquals(10, missionControl.getPlateau().y());
     }
 
     @Test
@@ -75,8 +75,8 @@ class MissionControlTest {
         );
 
         // Assert
-        assertEquals(10, missionControl.getPlateau().getX());
-        assertEquals(10, missionControl.getPlateau().getY());
+        assertEquals(10, missionControl.getPlateau().x());
+        assertEquals(10, missionControl.getPlateau().y());
     }
 
     @Test

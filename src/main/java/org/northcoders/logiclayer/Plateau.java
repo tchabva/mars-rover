@@ -36,11 +36,11 @@ public class Plateau {
         return true;
     }
 
-    public int getY() {
+    public int y() {
         return y;
     }
 
-    public int getX() {
+    public int x() {
         return x;
     }
 }
