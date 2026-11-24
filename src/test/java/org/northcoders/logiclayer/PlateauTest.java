@@ -38,22 +38,21 @@ class PlateauTest {
         assertTrue(result);
     }
 
-    @Test
     @DisplayName("Returns false if x or y are not within the plateau boundary")
-    void testReturnsFalseIfXOrYAreNotInPlateauBoundary() {
+    @ParameterizedTest(name = "X = {0}, Y = {1}", quoteTextArguments = false)
+    @CsvSource({
+            "12, 1",
+            "10, 21",
+            "-1, 1",
+            "-1, -1",
+            "11, 11",
+    })
+    void testReturnsFalseIfXOrYAreNotInPlateauBoundary(int posX, int posY) {
         // Arrange & Act
-        boolean result = plateau.isPositionValid(12, 1);
-        boolean resultTwo = plateau.isPositionValid(11, 21);
-        boolean resultThree = plateau.isPositionValid(-1, 1);
-        boolean resultFour = plateau.isPositionValid(12, 12);
+        boolean result = plateau.isPositionValid(posX, posY);
 
         // Assert
-        assertAll("Return false as they are not all in the plateau bounds",
-                () -> assertFalse(result),
-                () -> assertFalse(resultTwo),
-                () -> assertFalse(resultThree),
-                () -> assertFalse(resultFour)
-        );
+        assertFalse(result);
     }
 
     @Test
